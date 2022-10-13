@@ -1,3 +1,6 @@
 # Quartus database
 /db
+/incremental_db
+
+# Quartus output files
 /output_files
