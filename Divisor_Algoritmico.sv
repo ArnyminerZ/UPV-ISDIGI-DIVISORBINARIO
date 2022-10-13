@@ -26,7 +26,8 @@ logic [t_mod-1:0] CONT;
 // Aquí viene lo chido
 always_ff @(posedge CLK) begin
     case (state)
-        D0:
+        // Estado 1
+        D0: begin
         fin <= 1'b0;
         if (Start == 1'b1) begin
             ACCU <= '0;
@@ -37,12 +38,16 @@ always_ff @(posedge CLK) begin
             M <= Den[tamanyo-1] ? (~Den+1) : Den;
         end
         state <= D1;
+        end
 
-        D1:
+        // Estado 2
+        D1: begin
         {ACCU, Q} <= {ACCU[tamanyo-2:0], Q, 1'b0};
         state <= D2;
+        end
 
-        D2:
+        // Estado 3
+        D2: begin
         CONT <= CONT - 1;
         if (ACCU >= M) begin
             Q <= Q + 1;
@@ -50,11 +55,14 @@ always_ff @(posedge CLK) begin
         end
         if (CONT ~= 0)
             state <= D3;
+        end
 
-        D3:
+        // Estado 4
+        D3: begin
         fin <= 1'b1;
         Coc <= (SignNum^SignDen) ? (~Q+1) : Q;
         Res <= SignNum ? (~ACCU + 1) : ACCU;
+        end
     endcase
 end
 endmodule
