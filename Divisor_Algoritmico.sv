@@ -23,6 +23,7 @@ logic [1:0] state;
 logic [tamanyo-1:0] ACCU;
 logic [t_mod-1:0] CONT;
 
+// Aquí viene lo chido
 always_ff @(posedge CLK) begin
     case (state)
         D0:
