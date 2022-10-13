@@ -15,7 +15,7 @@ module Divisor_Algoritmico #(
     input logic [tamanyo-1:0] Num, Den,
 
     // ! Salidas ! \\
-    output logic [tamanyo-1:0] Coc, Rec,
+    output logic [tamanyo-1:0] Coc, Res,
     output logic Done
 );
 logic fin, SignNum, SignDen;
@@ -53,7 +53,7 @@ always_ff @(posedge CLK) begin
             Q <= Q + 1;
             ACCU <= ACCU - M;
         end
-        if (CONT ~= 0)
+        if (CONT != 0)
             state <= D3;
         end
 
