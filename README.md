@@ -4,24 +4,24 @@ Para realizar una división en 2s-complement, debemos seguir el siguiente algori
 2. `-6` en 2-s complement es `1111 1010`.
 3. Sumamos el numerador y el `-6` (descartando el carry):
 ```
- 0001 0011
-+1111 1010
+ 0001 0011 <- numerador
++1111 1010 <- 2sc 6
 ----------
  0000 1101 (q=1)
 ```
 4. Comprobamos si el resultado que nos ha dado es menor a nuestro denominador (`0000 0110`).\
    En este caso, `0000 1101 > 0000 0110`, así que debemos volver a realizar la suma, con el resultado.
 ```
- 0000 1101
-+1111 1010
+ 0000 1101 <- resultado op1
++1111 1010 <- 2sc 6
 ----------
  0000 0111 (q=2)
 ```
    En todos los ciclos, debemos aumentar `q` en 1, que será nuestro cociente.
 5. Volvemos a realizar la comprobación. Como `0000 0111 > 0000 0110` realizamos otra vez el cálculo.
 ```
- 0000 0111
-+1111 1010
+ 0000 0111 <- resultado op2
++1111 1010 <- 2sc 6
 ----------
  0000 0001 (q=3)
 ```
