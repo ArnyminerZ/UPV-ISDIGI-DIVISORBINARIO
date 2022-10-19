@@ -1,7 +1,7 @@
 class Bus;
 randc logic [31:0] valor;
-constraint impares {valor[0] == 1'b1;}
-constraint pares   {valor[0] == 1'b0;}
+constraint positivos {valor[31] == 1'b1;}
+constraint negativos {valor[31] == 1'b0;}
 endclass
 
 module banco_de_pruebas;
@@ -25,7 +25,9 @@ Valores_num valn;
 Valores_den vald;
 
 // Declaración de módulos
-Divisor_Algoritmico_pruebas divisor (
+Divisor_Algoritmico #(
+    .tamanyo(32)
+) divisor (
     .CLK(CLK),
     .RSTa(RSTa),
     .Start(Start),
