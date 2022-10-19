@@ -1,0 +1,14 @@
+Analysis & Synthesis Status : Successful - Wed Oct 19 08:47:31 2022
+Quartus Prime Version : 17.1.0 Build 590 10/25/2017 SJ Lite Edition
+Revision Name : verificacionT2
+Top-level Entity Name : divisor_parallel
+Family : Cyclone IV E
+Total logic elements : 771
+    Total combinational functions : 737
+    Dedicated logic registers : 46
+Total registers : 46
+Total pins : 68
+Total virtual pins : 0
+Total memory bits : 1,024
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 0

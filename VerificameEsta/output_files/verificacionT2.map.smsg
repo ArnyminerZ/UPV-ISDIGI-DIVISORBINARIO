@@ -1,0 +1,1 @@
+Warning (10268): Verilog HDL information at divisor_parallel.sv(48): always construct contains both blocking and non-blocking assignments File: C:/Users/berna/OneDrive/Escritorio/TrabayoISDIGI/VerificameEsta/divisor_parallel.sv Line: 48
