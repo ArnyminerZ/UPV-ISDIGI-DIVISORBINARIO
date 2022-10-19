@@ -4,3 +4,6 @@
 
 # Quartus output files
 /output_files
+
+# Temp files
+*.bak
