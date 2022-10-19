@@ -41,7 +41,6 @@ always_ff @(posedge CLK, negedge RSTa) begin
         S0: begin
         Done <= 1'b0;
         if (Start == 1'b1) begin
-            $display("> Calculo iniciado.");
             // Guardamos el signo de ambos operandos
             signNum <= !Num[tamanyo-1];
             signDen <= !Den[tamanyo-1];
