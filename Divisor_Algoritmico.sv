@@ -3,10 +3,10 @@ module Divisor_Algoritmico #(
     parameter integer tamanyo = 32,
 
     // Constantes de estado
-    parameter D0 = 2'd0,
-    parameter D1 = 2'd1,
-    parameter D2 = 2'd2,
-    parameter D3 = 2'd3
+    parameter S0 = 2'd0,
+    parameter S1 = 2'd1,
+    parameter S2 = 2'd2,
+    parameter S3 = 2'd3
 )(
     // ! Entradas ! \\
     input CLK, RSTa, Start,
@@ -16,10 +16,14 @@ module Divisor_Algoritmico #(
     output logic [tamanyo-1:0] Coc, Res,
     output logic Done
 );
-logic SignNum, SignDen;
+// Contenedor del estado
 logic [1:0] state;
-logic [tamanyo-1:0] ACCU, Q, M;
-logic [tamanyo-1:0] CONT;
+
+// Contenedor del valor de 2s complement que se está usando (ver README.md)
+logic [tamanyo-1:0] mem, c2s;
+
+// Contenedor del contador para el cociente
+logic [tamanyo-1:0] q;
 
 // Aquí viene lo chido
 always_ff @(posedge CLK, negedge RSTa) begin
@@ -29,51 +33,39 @@ always_ff @(posedge CLK, negedge RSTa) begin
     end
 
     case (state)
-        // * Estado 1
-        D0: begin
+        // * Estado 1 - Standby
+        S0: begin
         Done <= 1'b0;
         if (Start == 1'b1) begin
-            ACCU <= '0;
-            // Reiniciamos el contador al número máximo de ciclos a realizar
-            CONT <= tamanyo-1;
-
-            // Como trabajamos en 2s complement, el primer bit representa el signo del número
-            SignNum <= Num[tamanyo-1];
-            SignDen <= Den[tamanyo-1];
-
-            // Se obtiene el 2s complement del número.
-            // Si es positivo, no se hace nada, de lo contrario, se invierte y se le añade 1
-            Q <= Num[tamanyo-1] ? (~Num+1) : Num;
-            M <= Den[tamanyo-1] ? (~Den+1) : Den;
+            c2s <= (~Den-1);
+            mem <= Num;
+            q <= 0;
+            state <= S1;
         end
-        state <= D1;
         end
 
-        // * Estado 2
-        D1: begin
-        {ACCU, Q} <= {ACCU[tamanyo-2:0], Q, 1'b0};
-        state <= D2;
+        // * Estado 2 - Actualización de los valores
+        S1: begin
+        q <= q + 1;
+        if (mem < Den)
+            state <= S3;
+        else begin
+            state <= S2;
+        end
         end
 
-        // * Estado 3
-        D2: begin
-        CONT <= CONT - 1;
-        if (ACCU >= M) begin
-            Q <= Q + 1;
-            ACCU <= ACCU - M;
+        // * Estado 3 - Operación de suma
+        S2: begin
+        mem = mem + c2s; // Realizamos la suma
+        state <= S1;
         end
-        // Si el contador llega a 0, finaliza
-        if (CONT != 0)
-            state <= D1;
-        else
-            state <= D3;
-        end
-
-        // * Estado 4
-        D3: begin
+        
+        // * Estado 4 - Fin
+        S3: begin
         Done <= 1'b1;
-        Coc <= (SignNum^SignDen) ? (~Q+1) : Q;
-        Res <= SignNum ? (~ACCU + 1) : ACCU;
+        Coc <= q;
+        Res <= mem;
+        state <= S0;
         end
     endcase
 end
