@@ -29,7 +29,7 @@ logic [tamanyo-1:0] q;
 always_ff @(posedge CLK, negedge RSTa) begin
     // Reinicia el sistema si se llama por RSTa
     if (!RSTa) begin
-        state <= D0;
+        state <= S0;
     end
 
     case (state)
