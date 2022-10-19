@@ -31,13 +31,14 @@ always_ff @(posedge CLK, negedge RSTa) begin
     if (!RSTa) begin
         state <= S0;
     end
-
+    else
     case (state)
         // * Estado 1 - Standby
         S0: begin
         Done <= 1'b0;
         if (Start == 1'b1) begin
-            c2s <= (~Den-1);
+            $display("> Calculo iniciado.");
+            c2s <= (~Den+1);
             mem <= Num;
             q <= 0;
             state <= S1;
@@ -46,17 +47,19 @@ always_ff @(posedge CLK, negedge RSTa) begin
 
         // * Estado 2 - Actualización de los valores
         S1: begin
-        q <= q + 1;
+        $display("> Cociente:", q);
+        $display("  mem:     ", mem);
         if (mem < Den)
             state <= S3;
         else begin
+            q <= q + 1;
             state <= S2;
         end
         end
 
         // * Estado 3 - Operación de suma
         S2: begin
-        mem = mem + c2s; // Realizamos la suma
+        mem <= mem + c2s; // Realizamos la suma
         state <= S1;
         end
         
