@@ -11,9 +11,9 @@
 // de tamanyo parametrizable pero paralelo para que los alumnos puedan empezar a testear r�p�do
 //
 // --------------------------------------------------------------------
-// Versi�n: V1.0 | Fecha Modificaci�n: 01/10/2022
+// Versión: V1.0 | Fecha Modificación: 15/10/2022
 //
-// Autores: Rafael Gadea
+// Autores: Bernarado Enguix
 // --------------------------------------------------------------------
 module divisor_parallel
 
