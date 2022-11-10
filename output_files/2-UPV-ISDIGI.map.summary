@@ -1,14 +1,14 @@
-Analysis & Synthesis Status : Successful - Wed Oct 19 21:10:19 2022
-Quartus Prime Version : 17.1.0 Build 590 10/25/2017 SJ Lite Edition
+Analysis & Synthesis Status : Failed - Thu Nov 10 20:24:34 2022
+Quartus Prime Version : 17.1.1 Internal Build 593 12/11/2017 SJ Lite Edition
 Revision Name : 2-UPV-ISDIGI
 Top-level Entity Name : Divisor_Algoritmico
 Family : Cyclone IV E
-Total logic elements : 370
-    Total combinational functions : 368
-    Dedicated logic registers : 199
-Total registers : 199
-Total pins : 132
-Total virtual pins : 0
-Total memory bits : 0
-Embedded Multiplier 9-bit elements : 0
-Total PLLs : 0
+Total logic elements : N/A until Partition Merge
+    Total combinational functions : N/A until Partition Merge
+    Dedicated logic registers : N/A until Partition Merge
+Total registers : N/A until Partition Merge
+Total pins : N/A until Partition Merge
+Total virtual pins : N/A until Partition Merge
+Total memory bits : N/A until Partition Merge
+Embedded Multiplier 9-bit elements : N/A until Partition Merge
+Total PLLs : N/A until Partition Merge

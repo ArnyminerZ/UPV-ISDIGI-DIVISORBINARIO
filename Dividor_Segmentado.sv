@@ -2,8 +2,8 @@ module Divisor_Segmentado
 
 // Declaramos aquí los parameters que vayamos a usar -->
 #(
-    parameter tamanyo = 4 ,        // El tamaño es de 32 bits o 16 bits (Por lo que lo iniciamos a 32 inicialmente)
-    localparam etapas = 2**tamanyo , // el numero de etapas es 2^4 (16 etapas en total)
+    parameter tamanyo = 32 ,        // El tamaño es de 32 bits o 16 bits (Por lo que lo iniciamos a 32 inicialmente)
+    localparam etapas = 2*tamanyo , // el numero de etapas es 2^32 (16 etapas en total)
 )
 
 // Declaramos aquí entradas y salidas --> 
@@ -20,7 +20,8 @@ module Divisor_Segmentado
     output logic [tamanyo-1:0] Coc , Res    // Declaramos las salidas del cociente (Coc) 
                                             // y  del Resto (Res) del resultado de la división entre 
                                             // el numerador y el divisor
-
+   logic [etapas-1] start signNUM signDen
+   logic [etapas-1][tamanyo-1] ACCU, Q, M
 );
 
 /* Queremos realizar un Divisor Segmentado, es decir un divisor algoritmico pero que realize dicha 
@@ -41,40 +42,52 @@ El data path al final es quien ejecuta tods los cambios en tods las variables ex
 
 // Declaramos los estados en base logic -->
 
-logic [etapas-1:0] start ;  // Estado de inicio
-logic [etapas:0][3:0] Sal ; // Estado de salida
-logic [etapas-1:0][8:0] Reg ;    // Estado del registro ( por donde vamos)
-logic [etapas-1:0][8:0] X_reg ;  // Estado del registro de X (la señal de a cual se quiere hacer la raiz cuadrada)
+//logic [tamanyo-1:0] start ;  // Estado de inicio
+//logic [tamanyo:0][3:0] Sal ; // Estado de salida
+//logic [tamanyo-1:0][8:0] Reg ;    // Estado del registro ( por donde vamos)
+//logic [tamanyo-1:0][8:0] X_reg ;  // Estado del registro de X (la señal de a cual se quiere hacer la raiz cuadrada)
 
 always_ff @(posedge CLK or negedge RSTa) // En este always solo se llegarán a cambiar los estados. ( Es decir actuará como control path)
 begin
     if(!RSTa) //En este caso reiniciamos cada estado  a 0.
       begin
-         Reg <= 0 ;           // El valor del estado registro a  cero.
-         start <= 0 ;          // El valor del estado start a cero.
-         Sal <=  0 ;          // El valor del estado Sal a cero.
-         X_reg <=  0 ;        // El valor del estado X_reg a cero.
+         ACCU <= 0 ;
+         signNUM <= Num[tamanyo-1] ;
+         signDen <= Num[tamanyo-1] ;
+         Q <= Num[tamanyo-1]?(~Num-1):Num ;
+         M <= Den[tamanyo-1]?(~Den-1):Den ;
       end
    else        // Si no se presiona el reset --> incrementamos el estado start de 16 etapas con el valor inicial START
       begin
-         start[etapas-1:0] <= START ;      // Una vez inicializado trabajamos trabajamos
+         start[tamanyo-1:0] <= START ;      // Una vez inicializado trabajamos trabajamos
          if(START) // Si el valor de START se activa --> cambian los valores de los estados -->
             begin
-               Reg[etapas-1:0] <= 8'b1 ;           // El valor del estado registro coge un 1 en el tamaño de 8 bits que tiene.
-               start[etapas-1:0] <= START ;          // El valor del estado start coge el bit START.
-               Sal[etapas-1:0] <=  8'b0 ;          // El valor del estado Sal a cero ya que aun no ha llegado a su final de cuenta.
-               X_reg[etapas-1:0] <=  X ;        // El valor del estado X_reg coge el valor del cable X       .
+               ACCU <= 0 ;
+               signNUM <= Num[tamanyo-1] ;
+               signDen <= Num[tamanyo-1] ;
+               Q <= Num[tamanyo-1]?(~Num-1):Num ;
+               M <= Den[tamanyo-1]?(~Den-1):Den ;
+
+               //Reg[tamanyo-1:0] <= 8'b1 ;           // El valor del estado registro coge un 1 en el tamaño de 8 bits que tiene.
+               //start[tamanyo-1:0] <= START ;          // El valor del estado start coge el bit START.
+               //Sal[tamanyo-1:0] <=  8'b0 ;          // El valor del estado Sal a cero ya que aun no ha llegado a su final de cuenta.
+               //X_reg[tamanyo-1:0] <=  X ;        // El valor del estado X_reg coge el valor del cable X       .
 
             end
 
 // Ya habiendose fumado la primera etapa en lo anterior, procedemos con la funcionalidad de las demás etapas --> 
 
-         for (int i=(etapas-2) ; i>-1 ; i=i-1) // Creamos un bucle for --> se empieza en i=14 , funciona siempre i>-1, ya que entonces ya terminaría, y a cada etapa le resta uno
+         for (int i=(tamanyo-1) ; i>-1 ; i=i-1) // Creamos un bucle for --> se empieza en i=14 , funciona siempre i>-1, ya que entonces en i=0 terminaría, y a cada etapa se le resta uno
             begin
                start[i] <= start[i+1] ; // Guardamos en la etapa actual del estado, la del estado justo anterior.
-               if(start[i+1]) // Si nos han mandado el estadoa anterior --> actualizamos con los estados previos, los demás estados
+               if(start[i+1]) // Si nos han mandado el estado anterior --> actualizamos con los estados previos, los demás estados
                   begin
                      X_reg[i] <= X_reg[i+1] ; // El registro de la señal a analizar tendrá el valor del registro siguiente.
+                     Reg[i] <= Reg(Sal[i+]+2)**2
+                     if(Reg[i+1]<=X_reg[1+i])
+                        Sal[i] <= Sal[1+i]+1 ;
+                     else
+                        Sal[i] <= Sal[i+1] ; 
                   end
 
 
@@ -85,5 +98,8 @@ begin
 
 assign COUNT <= Reg[0] ; // Asignamos el valor del registro en la etapa 0 al contador.
 assign FIN <= start[0;] ; // Asignamos el valor del estador start en la etapa inicial al fin de la cuenta [FIN].
+assign Coc <= (signNUM^signDen)?(~Q+1):Q
+assign Reg <= signNUM?(~ACCU+1):ACCU
+
 
 endmodule 
