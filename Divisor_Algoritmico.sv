@@ -35,6 +35,8 @@ logic signNum, signDen;
 always_ff @(posedge CLK, negedge RSTa) begin
     // Reinicia el sistema si se llama por RSTa
     if (!RSTa) begin
+        // Reiniciamos todas las salidas a 0
+        {Coc, Res, Done} <= '0;
         // Para reiniciar establecemos el estado en el inicial
         state <= S0;
     end
