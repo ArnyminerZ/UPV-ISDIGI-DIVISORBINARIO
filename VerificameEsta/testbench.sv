@@ -15,13 +15,13 @@
 `define TB_COVERAGE 90
 
 // El tamaño de bits que probar
-`define BIT_SIZE 16
+`define BIT_SIZE 32
 
 
 // * NO CAMBIAR
 `define LAST_BIT `BIT_SIZE-1
 // TODO: Debería adaptarse a TEST_*
-`define BIN_SIZE 2**`LAST_BIT
+`define BIN_SIZE 2**(`LAST_BIT)
 // * FIN NO CAMBIAR
 
 
@@ -61,6 +61,7 @@ logic CLK, RSTa, Start;
 logic signed [`LAST_BIT:0] Num, Den, target_coc, target_res;
 logic Done;
 logic signed [`LAST_BIT:0] Coc, Res;
+bit s;
 
 event reset;
 event comprobado;
@@ -127,10 +128,18 @@ task actualizarTargets;
     target_res = (Num%Den);
 endtask
 
-task rutina;
-    assert (bus_inst.randomize()) else $fatal("! Randomization failed");
+task rutina(output bit success);
+    assert (bus_inst.randomize()) else begin
+        $warning("! Randomization failed");
+        success = 0;
+        return;
+    end
     Num = bus_inst.num;
-    assert (bus_inst.randomize()) else $fatal("! Randomization failed");
+    assert (bus_inst.randomize()) else begin
+        $warning("! Randomization failed");
+        success = 0;
+        return;
+    end
     Den = bus_inst.den;
     vals.sample();
 
@@ -138,6 +147,7 @@ task rutina;
 
     iniciar();
     esperaAComprobar();
+    success = 1;
 endtask
 
 initial reiniciar();
@@ -149,6 +159,7 @@ initial begin
     $display("> Inicializando testbench...");
     $display("  Objetivo coverage:           %d %%", `TB_COVERAGE);
     $display("  Las bin tienen un tamaño de: %d", `BIN_SIZE);
+    $display("  El ancho de memoria es de:   %d", `BIT_SIZE);
 
     // Instanciamos el generador de valores aleatorios
     bus_inst = new;
@@ -166,8 +177,6 @@ initial begin
     esperaAComprobar();
     $display("  Primer ciclo completado!");
 
-    $stop;
-
     $display("> Simulando...");
     // $display("> Probando con numerador y denominador positivos, division exacta...");
     while (vals.get_inst_coverage() < `TB_COVERAGE) begin
@@ -178,7 +187,8 @@ initial begin
         bus_inst.den_negativo.constraint_mode(0);
         bus_inst.div_exactaaa.constraint_mode(1);
 
-        rutina();
+        rutina(s);
+        if(!s) continue;
         `endif
         
         `ifdef TEST_NUM_NEG_DEN_POS
@@ -188,7 +198,8 @@ initial begin
         bus_inst.den_negativo.constraint_mode(0);
         bus_inst.div_exactaaa.constraint_mode(1);
 
-        rutina();
+        rutina(s);
+        if(!s) continue;
         `endif
         
         `ifdef TEST_NUM_POS_DEN_NEG
@@ -198,7 +209,8 @@ initial begin
         bus_inst.den_negativo.constraint_mode(1);
         bus_inst.div_exactaaa.constraint_mode(1);
 
-        rutina();
+        rutina(s);
+        if(!s) continue;
         `endif
         
         `ifdef TEST_NUM_NEG_DEN_NEG
@@ -208,7 +220,8 @@ initial begin
         bus_inst.den_negativo.constraint_mode(1);
         bus_inst.div_exactaaa.constraint_mode(1);
 
-        rutina();
+        rutina(s);
+        if(!s) continue;
         `endif
     end
 
