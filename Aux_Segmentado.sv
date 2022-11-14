@@ -2,21 +2,23 @@
     Declaramos el módulo auxiliar que realiza los módulos desde el primero hasta el justo último de los estados
     que vayamos a implementar según el número de bits que se vayan a asignar (tamaño del array)
 */
-module Aux_Segmentado (
+module Aux_Segmentado #(
+    parameter integer tamanyo = 32
+) (
     // ! Entradas ! \\
     input logic CLK, RSTa, Start,                   // Declaramos las variables lógicas de reloj, reset y comienzo de la operación de división
     input logic SignNum, SignDen,                   // Declaramos las variables de único bit de los signos del Denominador(Den) y Numerador(Num) {0-->Positivo ; 1-->Negativo}
-    input logic [`LAST_BIT:0] Q, M, ACCU,           // Declaramos las variables (Q,M,ACCU) de tamaño a elegir con la definición "LAST_BIT"
+    input logic [tamanyo-1:0] Q, M, ACCU,           // Declaramos las variables (Q,M,ACCU) de tamaño a elegir con la definición "LAST_BIT"
 
     // ! Salidas ! \\
-    output logic [`LAST_BIT:0] Q_out, M_out, ACCU_out,  // Declaramos las variables de salidas de (Q,M,ACCU) de igual tamaño a las entradas
+    output logic [tamanyo-1:0] Q_out, M_out, ACCU_out,  // Declaramos las variables de salidas de (Q,M,ACCU) de igual tamaño a las entradas
     output logic SignNum_out, SignDen_out,              // Declaramos las variables de salida de los signos del numerador y denominador
     output logic Done                                   // Declaramos la variables de salida(Done) que actúa como valor de Start a partir del módulo 1 en adelante
 );
 
-logic [`LAST_BIT:0] ACCU_int, Q_int;        // Declaramos los registros internos del acumulador(ACCU) y del cociente(Q), siempre de igual tamaño
+logic [tamanyo-1:0] ACCU_int, Q_int;        // Declaramos los registros internos del acumulador(ACCU) y del cociente(Q), siempre de igual tamaño
 
-assign {ACCU_int, Q_int} = {ACCU[`BIT_SIZE-2:0],Q,1'b0};
+assign {ACCU_int, Q_int} = {ACCU[tamanyo-2:0],Q,1'b0};
 
 always_ff @(posedge CLK, negedge RSTa) begin
     // Para reiniciar el módulo, borramos el valor de todas las salidas

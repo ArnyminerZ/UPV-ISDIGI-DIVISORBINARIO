@@ -1,30 +1,23 @@
-`ifdef BIT_SIZE
-`else
-// Parámetros para la sintésis. Sólo aplican si no se han definido ya, es decir,
-// si no estamos ejecutando desde el testbench.
-`define BIT_SIZE 16
-`define LAST_BIT `BIT_SIZE-1
-`define BIN_SIZE 2**`LAST_BIT
-`endif
-
 `include "Aux_Segmentado.sv"
 
-module Dividor_Segmentado (
+module Dividor_Segmentado #(
+    parameter integer tamanyo = 32
+) (
    // Declaramos aquí entradas y salidas --> 
 
 	// Entradas --> 
     input CLK , RSTa , Start ,  // Declaramos la entrada de reloj , el Reset high lvl y la entrada higg lvl de iniciación de la operación(Start)
-    input logic [`LAST_BIT:0] Num , Den , // Declaramos las entradas del numerador(Num) y del denominador (Den) de 32 bits de tamaño [31:0]
+    input logic [tamanyo-1:0] Num , Den , // Declaramos las entradas del numerador(Num) y del denominador (Den) de 32 bits de tamaño [31:0]
     // Outputs -->
     output logic Done ,  // Declaramos la salida Done para ver cuando justo acaba de hacer la división
-    output logic [`LAST_BIT:0] Coc , Res    // Declaramos las salidas del cociente (Coc) 
+    output logic [tamanyo-1:0] Coc , Res    // Declaramos las salidas del cociente (Coc) 
                                             // y  del Resto (Res) del resultado de la división entre 
                                             // el numerador y el divisor   (32 bits también)      
 );
 
-localparam etapas=`BIT_SIZE; //2**`BIT_SIZE;
+localparam etapas=tamanyo; //2**tamanyo;
 
-logic [etapas-1:0][`LAST_BIT:0] ACCU, Q, M;  // Declaramos el acumulador, el contador del cociente y el del resto
+logic [etapas-1:0][tamanyo-1:0] ACCU, Q, M;  // Declaramos el acumulador, el contador del cociente y el del resto
 logic [etapas-1:0] SignNum, SignDen, Done_mem;  // Declaramos los array del signo del numerador, denominador y el estado de paso realizado en memoria
 
 /* 
@@ -47,7 +40,7 @@ generate
          //  Como se van a generar 32 módulos, usaremos un case/default para realizarlo, donde solo
          // se llegarán a declarar los módulos 0 y 32 de forma directa y en el default estarán los
          // 30 módulos restantes ya que estos dependen dirécatemente del módulo anterior y operan de igual forma
-         // (Los únicos módulos en los que se procede de forma diferente son en el primero(0) y úlimo(`BIT_SIZE) ).
+         // (Los únicos módulos en los que se procede de forma diferente son en el primero(0) y úlimo(tamanyo) ).
 
          case(i)  // En caso de estar en módulo 'i' se realiza las siguientes acciones.
  
@@ -57,11 +50,11 @@ generate
                   .CLK(CLK),                             // Conectamos el CLK de la instancia al del módulo.
                   .RSTa(RSTa),                           // Conectamos el RSTa de la instancia al del módulo.
                   .Start(Start),                         // Conectamos el Start de la instancia al del módulo.
-                  .SignNum(Num[`LAST_BIT]),              // Conectamos SignNum con el valor de Num y solo buscamos para el bit más significativo , es decir, el que nos determina si es un valor positivo (0) 0 negativo (1).
-                  .SignDen(Den[`LAST_BIT]),              // De igaul forma que la anterior pero para el signo del denominador .
+                  .SignNum(Num[tamanyo-1]),              // Conectamos SignNum con el valor de Num y solo buscamos para el bit más significativo , es decir, el que nos determina si es un valor positivo (0) 0 negativo (1).
+                  .SignDen(Den[tamanyo-1]),              // De igaul forma que la anterior pero para el signo del denominador .
                   .ACCU('0),                             // El acumulador al principio está a cero total ya que no se ha realizado de momento ninguna acción, pero si que cambiará el valor para la salida del propio acumulador.
-                  .Q(Num[`LAST_BIT] ? (~Num+1) : Num),   //
-                  .M(Den[`LAST_BIT] ? (~Den+1) : Den),   //
+                  .Q(Num[tamanyo-1] ? (~Num+1) : Num),   //
+                  .M(Den[tamanyo-1] ? (~Den+1) : Den),   //
                   .ACCU_out(ACCU[i]),                    // La salida del ACCU está conectada con el valor que tenga de entrada para el estado en el que se encuentre, que en este caso (i=0)
                   .Q_out(Q[i]),                          // Q_out coge la salida de Q a instancia de (i = 0)
                   .M_out(M[i]),                          // M_out se conecta a la propia entrada en el estado inicial (i = 0)
