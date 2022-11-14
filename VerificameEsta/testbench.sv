@@ -31,8 +31,8 @@
 // La clase bus nos proporciona las constraints que nos permiten
 // detallar qué queremos comprobar.
 class Bus;
-randc logic signed [`LAST_BIT:0] num;
-randc logic signed [`LAST_BIT:0] den;
+randc logic [`LAST_BIT:0] num;
+randc logic [`LAST_BIT:0] den;
 
 // Para limitar a sólo denominadores positivos o negativos
 constraint num_positivo {num[`LAST_BIT] == 1'b0;}
@@ -56,9 +56,9 @@ endclass
 module banco_de_pruebas;
 
 logic CLK, RSTa, Start;
-logic signed [`LAST_BIT:0] Num, Den;
+logic signed [`LAST_BIT:0] Num, Den, target_coc, target_res;
 logic Done;
-logic signed [`LAST_BIT:0] Coc, Res, target_coc, target_res;
+logic signed [`LAST_BIT:0] Coc, Res;
 
 event reset;
 event comprobado;
