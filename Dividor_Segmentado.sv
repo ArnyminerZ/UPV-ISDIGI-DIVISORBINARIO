@@ -45,7 +45,9 @@ generate
          case(i)  // En caso de estar en módulo 'i' se realiza las siguientes acciones.
  
             0:    // Módulo en cuanto la cuenta está sin empezar y justo se Activa la señal de cmoienzo.
-               Aux_Segmentado Comienzo_Division (     // Declaramos la primera instancia del divisor auxiliar que permite
+               Aux_Segmentado #(
+                  .tamanyo(tamanyo)
+               ) Comienzo_Division (     // Declaramos la primera instancia del divisor auxiliar que permite
                                                                            // iniciar la cadena de sumadores.
                   .CLK(CLK),                             // Conectamos el CLK de la instancia al del módulo.
                   .RSTa(RSTa),                           // Conectamos el RSTa de la instancia al del módulo.
@@ -81,7 +83,9 @@ generate
                end
 
             default:    // Con el default entramos en cualquier módulo diferente del inicial(0) y el final(etapas)
-               Aux_Segmentado Siguiendo_Division (     // Declaramos la segunda instancia del divisor auxiliar que permite
+               Aux_Segmentado #(
+                  .tamanyo(tamanyo)
+               ) Siguiendo_Division (     // Declaramos la segunda instancia del divisor auxiliar que permite
                                                                            // continuar la cadena de sumadores desde i=1 hasta i=31.
                   .CLK(CLK),                    // Conectamos el CLK de la instancia al del módulo
                   .RSTa(RSTa),                  // Conectamos el RSTa de la instancia al del módulo
