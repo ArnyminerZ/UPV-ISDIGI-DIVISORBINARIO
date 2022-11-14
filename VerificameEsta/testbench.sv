@@ -78,7 +78,7 @@ Valores vals;
 
 // Declaración de módulos
 // Divisor_Algoritmico #(
-Dividor_Segmentado divisor #(
+Dividor_Segmentado #(
     .tamanyo(`BIT_SIZE)
 ) divisor (
     .CLK(CLK),
