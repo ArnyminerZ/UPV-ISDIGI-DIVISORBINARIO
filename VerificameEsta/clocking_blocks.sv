@@ -25,8 +25,7 @@ program estimulos
 covergroup valores_X;    
   coverpoint  X;
 endgroup;                       
-//de
-claraciones de dos objetos
+//declaraciones de dos objetos
   Bus busInst;
   valores_X veamos; 
   initial
