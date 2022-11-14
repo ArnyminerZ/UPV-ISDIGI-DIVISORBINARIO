@@ -21,7 +21,7 @@ always_ff @(posedge CLK, negedge RSTa) begin
         // Transferimos el estado
         Num_c2s_out <= (Num_c2s < Den_abs) ? (Num_c2s + Den_c2s) : Num_c2s;
         Q_out       <= (Num_c2s < Den_abs) ? Q                   : (Q + 1);
-        Done        <= (Num_c2s < Den_abs) ? 1'b0                : 1'b1;
+        Done <= Start;
     end
 end
 
