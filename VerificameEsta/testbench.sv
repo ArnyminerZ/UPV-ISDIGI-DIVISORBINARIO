@@ -1,6 +1,3 @@
-//`include "../Divisor_Algoritmico.sv"
-`include "../Dividor_Segmentado.sv"
-
 // Se puede definir debug para obtener registros más detallados
 `define DEBUG
 
@@ -26,6 +23,11 @@
 // TODO: Debería adaptarse a TEST_*
 `define BIN_SIZE 2**`LAST_BIT
 // * FIN NO CAMBIAR
+
+
+// * INCLUÍMOS ARCHIVOS
+//`include "../Divisor_Algoritmico.sv"
+`include "../Dividor_Segmentado.sv"
 
 
 // La clase bus nos proporciona las constraints que nos permiten
@@ -75,9 +77,9 @@ Valores vals;
 
 // Declaración de módulos
 // Divisor_Algoritmico #(
-Dividor_Segmentado #(
-    .tamanyo(`BIT_SIZE)
-) divisor (
+//     .tamanyo(`BIT_SIZE)
+// ) divisor (
+Dividor_Segmentado divisor (
     .CLK(CLK),
     .RSTa(RSTa),
     .Start(Start),

@@ -1,20 +1,18 @@
-module Aux_Segmentado #(
-    parameter tamanyo = 32
-)(
+module Aux_Segmentado (
     // ! Entradas ! \\
     input logic CLK, RSTa, Start,
     input logic SignNum, SignDen,
-    input logic [tamanyo-1:0] Q, M, ACCU,
+    input logic [`LAST_BIT:0] Q, M, ACCU,
 
     // ! Salidas ! \\
-    output logic [tamanyo-1:0] Q_out, M_out, ACCU_out,
+    output logic [`LAST_BIT:0] Q_out, M_out, ACCU_out,
     output logic SignNum_out, SignDen_out,
     output logic Done
 );
 
-logic [tamanyo-1:0] ACCU_int, Q_int;
+logic [`LAST_BIT:0] ACCU_int, Q_int;
 
-assign {ACCU_int, Q_int} = {ACCU[tamanyo-2:0],Q,1'b0};
+assign {ACCU_int, Q_int} = {ACCU[`BIT_SIZE-2:0],Q,1'b0};
 
 always_ff @(posedge CLK, negedge RSTa) begin
     // Para reiniciar el módulo, borramos el valor de todas las salidas

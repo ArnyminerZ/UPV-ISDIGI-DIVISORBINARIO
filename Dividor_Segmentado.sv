@@ -1,24 +1,30 @@
+`ifdef BIT_SIZE
+`else
+// Parámetros para la sintésis. Sólo aplican si no se han definido ya, es decir,
+// si no estamos ejecutando desde el testbench.
+`define BIT_SIZE 16
+`define LAST_BIT `BIT_SIZE-1
+`define BIN_SIZE 2**`LAST_BIT
+`endif
+
 `include "Aux_Segmentado.sv"
 
-module Dividor_Segmentado #(
-   // Declaramos aquí los parameters que vayamos a usar -->
-   parameter tamanyo = 32         // El tamaño es de 32 bits
-)(
+module Dividor_Segmentado (
    // Declaramos aquí entradas y salidas --> 
 
 	// Entradas --> 
     input CLK , RSTa , Start ,  // Declaramos la entrada de reloj , el Reset high lvl y la entrada higg lvl de iniciación de la operación(Start)
-    input logic [tamanyo-1:0] Num , Den , // Declaramos las entradas del numerador(Num) y del denominador (Den) de 32 bits de tamaño [31:0]
+    input logic [`LAST_BIT:0] Num , Den , // Declaramos las entradas del numerador(Num) y del denominador (Den) de 32 bits de tamaño [31:0]
     // Outputs -->
     output logic Done ,  // Declaramos la salida Done para ver cuando justo acaba de hacer la división
-    output logic [tamanyo-1:0] Coc , Res    // Declaramos las salidas del cociente (Coc) 
+    output logic [`LAST_BIT:0] Coc , Res    // Declaramos las salidas del cociente (Coc) 
                                             // y  del Resto (Res) del resultado de la división entre 
                                             // el numerador y el divisor   (32 bits también)      
 );
 
-localparam etapas=tamanyo; //2**tamanyo;
+localparam etapas=`BIT_SIZE; //2**`BIT_SIZE;
 
-logic [etapas-1:0] ACCU, Q, M [tamanyo-1:0];
+logic [etapas-1:0][`LAST_BIT:0] ACCU, Q, M;
 logic [etapas-1:0] SignNum, SignDen, Done_mem;
 
 /* 
@@ -41,23 +47,21 @@ generate
          //  Como se van a generar 32 módulos, usaremos un case/default para realizarlo, donde solo
          // se llegarán a declarar los módulos 0 y 32 de forma directa y en el default estarán los
          // 30 módulos restantes ya que estos dependen dirécatemente del módulo anterior y operan de igual forma
-         // (Los únicos módulos en los que se procede de forma diferente son en el primero(0) y úlimo(tamanyo) ).
+         // (Los únicos módulos en los que se procede de forma diferente son en el primero(0) y úlimo(`BIT_SIZE) ).
 
          case(i)
 
             0:    // Módulo en cuanto la cuenta está sin empezar y justo se Activa la señal de cmoienzo
-               Aux_Segmentado #(
-                  .tamanyo(tamanyo)
-               ) Comienzo_Division (     // Declaramos la primera instancia del divisor auxiliar que permite
+               Aux_Segmentado Comienzo_Division (     // Declaramos la primera instancia del divisor auxiliar que permite
                                                                            // iniciar la cadena de sumadores
                   .CLK(CLK),     // Conectamos el CLK de la instancia al del módulo
                   .RSTa(RSTa),   // Conectamos el RSTa de la instancia al del módulo
                   .Start(Start), // Conectamos el Start de la instancia al del módulo
-                  .SignNum(Num[tamanyo-1]),
-                  .SignDen(Den[tamanyo-1]),
+                  .SignNum(Num[`LAST_BIT]),
+                  .SignDen(Den[`LAST_BIT]),
                   .ACCU('0),
-                  .Q(Num[tamanyo-1] ? (~Num+1) : Num),
-                  .M(Den[tamanyo-1] ? (~Den+1) : Den),
+                  .Q(Num[`LAST_BIT] ? (~Num+1) : Num),
+                  .M(Den[`LAST_BIT] ? (~Den+1) : Den),
                   .ACCU_out(ACCU[i]),
                   .Q_out(Q[i]),
                   .M_out(M[i]),
@@ -66,7 +70,7 @@ generate
                   .Done(Done_mem[i])
                );
 
-            (etapas):    // Módulo en cuanto la cuenta llega a su fin y se completa la división, aquí asignamos el valor final -->
+            etapas:    // Módulo en cuanto la cuenta llega a su fin y se completa la división, aquí asignamos el valor final -->
                always_ff @(posedge CLK,negedge RSTa) // Declaramos un bloque procedurar always_ff en el que se activa a ciclo de reloj ascendente
                begin                                 // o cuando se active el reseteo de la operación. 
                   if(!RSTa)            // Si se quiere resetear -->
@@ -84,9 +88,7 @@ generate
                end
 
             default:
-               Aux_Segmentado #(
-                  .tamanyo(tamanyo)
-               ) Siguiendo_Division (     // Declaramos la segunda instancia del divisor auxiliar que permite
+               Aux_Segmentado Siguiendo_Division (     // Declaramos la segunda instancia del divisor auxiliar que permite
                                                                            // continuar la cadena de sumadores desde i=1 hasta i=31.
                   .CLK(CLK),     // Conectamos el CLK de la instancia al del módulo
                   .RSTa(RSTa),   // Conectamos el RSTa de la instancia al del módulo
