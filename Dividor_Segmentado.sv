@@ -109,4 +109,9 @@ generate
       end
 endgenerate          // Terminamos la función generate
 
+property Reseteo;
+    @(posedge CLK) disable iff (RSTa == 1'b1) RSTa == 1'b0 |-> ##1  (Coc==1'b0)&&(Res==1'b0)&&(Done==1'b0); //Si reseteamos, los valores de entrada tienen que ser 0
+endproperty
+reseteado: assert property (Reseteo) else $error("La funcion reset no se ejecuta correctamente");
+
 endmodule 

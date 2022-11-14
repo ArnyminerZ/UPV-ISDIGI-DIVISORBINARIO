@@ -57,7 +57,7 @@ covergroup ValoresEntrada;
 	den_positiv: coverpoint Den {bins binsDenPos[(`BIN_SIZE)/2-1] = {[1:((`BIN_SIZE)/2)-1]};
                                 illegal_bins zero[1] ={0};}     //denominador = 0 es un estado ilegal
 	den_negativ: coverpoint Den {bins binsDenNeg[(`BIN_SIZE)/2] ={[-((`BIN_SIZE)/2):-1]};}
-    num_negativ: coverpoint Num {bins binsNumPos[(`BIN_SIZE)/2] ={[-((`BIN_SIZE)/2):-1]};}
+    num_negativ: coverpoint Num {bins binsNumNeg[(`BIN_SIZE)/2] ={[-((`BIN_SIZE)/2):-1]};}
 
     crosspoint1: cross num_positiv,den_positiv; //combinatoria de numerador positivo y denominador positivo
     crosspoint2: cross num_positiv,den_negativ; //combinatoria de numerador positivo y denominador negativo
@@ -66,9 +66,9 @@ covergroup ValoresEntrada;
 endgroup
 covergroup ValoresSalida @(negedge Done);
     cocientes1: coverpoint Coc {bins binsCocPos[(`BIN_SIZE)/2] = {[0:((`BIN_SIZE)/2)-1]};}
-    cocientes2: coverpoint Coc {bins binsCocNeg[(`BIN_SIZE)/2] = {[0:((`BIN_SIZE)/2)-1]};}
+    cocientes2: coverpoint Coc {bins binsCocNeg[(`BIN_SIZE)/2] = {[-((`BIN_SIZE)/2)-1:-1]};}
     restos1: coverpoint Res {bins binsResPos[(`BIN_SIZE)/2] = {[0:((`BIN_SIZE)/2)-1]};}
-    restos2: coverpoint Res {bins binsResNeg[(`BIN_SIZE)/2] = {[0:((`BIN_SIZE)/2)-1]};}    
+    restos2: coverpoint Res {bins binsResNeg[(`BIN_SIZE)/2] = {[-((`BIN_SIZE)/2)-1:-1]};}    
     soluciones1: cross cocientes1,restos1;    //combinatoria cocientes positivos y restos positivos
     soluciones2: cross cocientes1,restos2;    //combinatoria cocientes positivos y restos negativos
     soluciones3: cross cocientes2,restos1;    //combinatoria cocientes negativos y restos positivos
@@ -138,6 +138,7 @@ endtask
 
 // La rutina de randomización. Genera valores, actualiza targets, calcula y comprueba
 task rutina;
+    reiniciar();
     assert (bus_inst.randomize()) else $fatal("! Randomization failed");
     Num = bus_inst.num;
     assert (bus_inst.randomize()) else $fatal("! Randomization failed");
@@ -147,7 +148,6 @@ task rutina;
     actualizarTargets();
 
     iniciar();
-
     esperaAComprobar();
 endtask
 
@@ -246,8 +246,7 @@ always @(posedge Done) begin
     $display("Coverage Salidas = %0.2f %%", valo.get_inst_coverage());
 
     assert (Coc == target_coc) else $error("Operacion mal realizada. %d/%d=%d != %d", Num, Den, target_coc, Coc);
-    assert (Res == target_res) else $error("Operacion mal realizada. %d%%%d=%d != %d", Num, Den, target_res, Res);
-    -> comprobado;
+    assert (Res == target_res) else $fatal("Operacion mal realizada. %d%%%d=%d != %d", Num, Den, target_res, Res);
     -> comprobado;
 end
 
