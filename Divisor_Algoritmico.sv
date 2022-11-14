@@ -119,4 +119,15 @@ always_ff @(posedge CLK, negedge RSTa) begin
         end
     endcase
 end
+
+property Reseteo;
+    @(posedge CLK) disable iff (RSTa == 1'b1) RSTa == 1'b0 |-> ##1  (Coc==1'b0)&&(Res==1'b0)&&(Done==1'b0); //Si reseteamos, los valores de entrada tienen que ser 0
+endproperty
+reseteado: assert property (Reseteo) else $error("La funcion reset no se ejecuta correctamente");
+
+// property NumCero;
+//     (@(posedge CLK)  Num==0|-> @(negedge Done) @(posedge CLK) $fell(Res));
+// endproperty
+// ResCero: assert property (NumCero) else $error("Fallo en el calculo del resto");
+
 endmodule
