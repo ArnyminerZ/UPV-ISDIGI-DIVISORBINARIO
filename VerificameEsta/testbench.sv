@@ -78,9 +78,9 @@ Valores vals;
 
 // Declaración de módulos
 // Divisor_Algoritmico #(
-//     .tamanyo(`BIT_SIZE)
-// ) divisor (
-Dividor_Segmentado divisor (
+Dividor_Segmentado divisor #(
+    .tamanyo(`BIT_SIZE)
+) divisor (
     .CLK(CLK),
     .RSTa(RSTa),
     .Start(Start),
