@@ -74,10 +74,11 @@ covergroup ValoresEntrada;
                                 illegal_bins zero[1] ={0};}     //denominador = 0 es un estado ilegal
 	coverpoint3: coverpoint Den {bins binsDenNeg[(`BIN_SIZE)/2] ={[-((`BIN_SIZE)/2):-1]};}
     coverpoint4: coverpoint Num {bins binsNumPos[(`BIN_SIZE)/2] ={[-((`BIN_SIZE)/2):-1]};}
-    coverpoint5: cross coverpoint1,coverpoint2; //combinatoria de numerador positivo y denominador positivo
-    coverpoint6: cross coverpoint1,coverpoint3; //combinatoria de numerador positivo y denominador negativo
-    coverpoint7: cross coverpoint4,coverpoint2; //combinatoria de numerador negativo y denominador positivo
-    coverpoint8: cross coverpoint4,coverpoint3; //combinatoria de numerador negativo y denominador negativo
+
+    crosspoint1: cross coverpoint1,coverpoint2; //combinatoria de numerador positivo y denominador positivo
+    crosspoint2: cross coverpoint1,coverpoint3; //combinatoria de numerador positivo y denominador negativo
+    crosspoint3: cross coverpoint4,coverpoint2; //combinatoria de numerador negativo y denominador positivo
+    crosspoint4: cross coverpoint4,coverpoint3; //combinatoria de numerador negativo y denominador negativo
 endgroup
 covergroup ValoresSalida @(negedge Done);
     cocientes1: coverpoint Coc {bins binsCocPos[(`BIN_SIZE)/2] = {[0:((`BIN_SIZE)/2)-1]};}
@@ -192,7 +193,7 @@ initial begin
     $display("> Simulando...");
 
     // $display("> Probando con numerador y denominador positivos, division exacta...");
-    while ((vals.coverpoint5.get_inst_coverage() < `TB_COVERAGE)) begin
+    while ((vals.crosspoint1.get_inst_coverage() < `TB_COVERAGE)) begin
         `ifdef TEST_NUM_POS_DEN_POS
         bus_inst.num_positivo.constraint_mode(1);
         bus_inst.num_negativo.constraint_mode(0);
@@ -203,7 +204,7 @@ initial begin
         rutina();
         `endif
     end
-    while ((vals.coverpoint6.get_inst_coverage() < `TB_COVERAGE)) begin   
+    while ((vals.crosspoint2.get_inst_coverage() < `TB_COVERAGE)) begin   
         `ifdef TEST_NUM_NEG_DEN_POS
         bus_inst.num_positivo.constraint_mode(1);
         bus_inst.num_negativo.constraint_mode(0);
@@ -213,7 +214,7 @@ initial begin
         rutina();
         `endif
     end
-    while ((vals.coverpoint7.get_inst_coverage() < `TB_COVERAGE)) begin    
+    while ((vals.crosspoint3.get_inst_coverage() < `TB_COVERAGE)) begin    
         `ifdef TEST_NUM_POS_DEN_NEG
         bus_inst.num_positivo.constraint_mode(0);
         bus_inst.num_negativo.constraint_mode(1);
@@ -223,7 +224,7 @@ initial begin
         rutina();
         `endif
     end
-    while ((vals.coverpoint8.get_inst_coverage() < `TB_COVERAGE)) begin    
+    while ((vals.crosspoint4.get_inst_coverage() < `TB_COVERAGE)) begin    
         `ifdef TEST_NUM_NEG_DEN_NEG
         bus_inst.num_positivo.constraint_mode(0);
         bus_inst.num_negativo.constraint_mode(1);
