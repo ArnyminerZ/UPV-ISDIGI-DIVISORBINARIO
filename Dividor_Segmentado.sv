@@ -1,24 +1,27 @@
-module Divisor_Segmentado 
+`include "Aux_Segmentado.sv"
+
+module Dividor_Segmentado 
 
 // Declaramos aquí los parameters que vayamos a usar -->
 #(
-    parameter tamanyo = 32         // El tamaño es de 32 bits
+    parameter integer tamanyo = 32         // El tamaño es de 32 bits
 )
 
 // Declaramos aquí entradas y salidas --> 
 (
 
 	// Entradas --> 
-    input logic CLK , RSTa , START ,  // Declaramos la entrada de reloj , el Reset high lvl y la entrada higg lvl de iniciación de la operación(START)
+    input logic CLK , RSTa , Start ,  // Declaramos la entrada de reloj , el Reset high lvl y la entrada higg lvl de iniciación de la operación(Start)
     input logic [tamanyo-1:0] Num , Den , // Declaramos las entradas del numerador(Num) y del denominador (Den) de 32 bits de tamaño [31:0]
     // Outputs -->
     output logic Done ,  // Declaramos la salida Done para ver cuando justo acaba de hacer la división
     output logic [tamanyo-1:0] Coc , Res,    // Declaramos las salidas del cociente (Coc) 
                                             // y  del Resto (Res) del resultado de la división entre 
                                             // el numerador y el divisor   (32 bits también)
-   logic [tamanyo-1:0] Num_c2s , Q , 
+   logic [tamanyo-1:0] Num_c2s [tamanyo-1:0],
+   logic [tamanyo-1:0] Q       [tamanyo-1:0] , 
                                                 
-   logic [tamanyo-1:0] Done       
+   logic [tamanyo-1:0] Done_mem       
 );
 
 /* 
@@ -50,14 +53,14 @@ generate
                                                                            // iniciar la cadena de sumadores
                   .CLK(CLK),     // Conectamos el CLK de la instancia al del módulo
                   .RSTa(RSTa),   // Conectamos el RSTa de la instancia al del módulo
-                  .Start(START), // Conectamos el Start de la instancia al del módulo
+                  .Start(Start), // Conectamos el Start de la instancia al del módulo
                   .Q('0),
                   .Den_abs(!Den[tamanyo-1] ? Den : (~Den+1)),
                   .Den_c2s(!Den[tamanyo-1] ? (~Den+1) : Den),
                   .Num_c2s(!Num[tamanyo-1] ? Num : (~Num+1)), // Es el sumador para el residuo
                   .Q_out(Q[0]),
                   .Num_c2s_out(Num_c2s[0]),
-                  .Done(Done[0])
+                  .Done(Done_mem[0])
                );
 
             (tamanyo):    // Módulo en cuanto la cuenta llega a su fin y se completa la división, aquí asignamos el valor final -->
@@ -73,7 +76,7 @@ generate
                      begin 
                         Coc <= (!Num[tamanyo-1] == Den[tamanyo-1]) ? Q[i-1] : (~Q[i-1]+1);
                         Res <= (!Num[tamanyo-1]) ? (~Num_c2s[i-1]+1) : Num_c2s[i-1];
-                        Done <= Done[i-1]; 
+                        Done <= Done_mem[i-1]; 
                      end
                end
 
@@ -82,14 +85,14 @@ generate
                                                                            // continuar la cadena de sumadores desde i=1 hasta i=31.
                   .CLK(CLK),     // Conectamos el CLK de la instancia al del módulo
                   .RSTa(RSTa),   // Conectamos el RSTa de la instancia al del módulo
-                  .Start(Done[i-1]),  // Conectamos el Start de la instancia al ---------
+                  .Start(Done_mem[i-1]),  // Conectamos el Start de la instancia al ---------
                   .Q(Q[i-1]),
                   .Den_abs(!Den[tamanyo-1] ? Den : (~Den+1)),
                   .Den_c2s(!Den[tamanyo-1] ? (~Den+1) : Den),
                   .Num_c2s(Num_c2s[i-1]),
                   .Q_out(Q[i]),
                   .Num_c2s_out(Num_c2s[i]),
-                  .Done(Done[i]),
+                  .Done(Done_mem[i])
 
                );
 
