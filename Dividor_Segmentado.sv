@@ -5,10 +5,10 @@ module Dividor_Segmentado #(
 ) (
    // Declaramos aquí entradas y salidas --> 
 
-	// Entradas --> 
+	// ! Entradas --> 
     input CLK , RSTa , Start ,  // Declaramos la entrada de reloj , el Reset high lvl y la entrada higg lvl de iniciación de la operación(Start)
     input logic [tamanyo-1:0] Num , Den , // Declaramos las entradas del numerador(Num) y del denominador (Den) de 32 bits de tamaño [31:0]
-    // Outputs -->
+    // ! Outputs -->
     output logic Done ,  // Declaramos la salida Done para ver cuando justo acaba de hacer la división
     output logic [tamanyo-1:0] Coc , Res    // Declaramos las salidas del cociente (Coc) 
                                             // y  del Resto (Res) del resultado de la división entre 
