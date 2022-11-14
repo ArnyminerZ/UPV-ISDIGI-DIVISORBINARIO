@@ -1,4 +1,9 @@
-`include "../Divisor_Algoritmico.sv"
+// `include "../Divisor_Algoritmico.sv"
+// `define MODULO Divisor_Algoritmico
+
+`include "../Dividor_Segmentado.sv"
+`define MODULO Dividor_Segmentado
+
 
 // Se puede definir debug para obtener registros más detallados
 `define DEBUG
@@ -21,6 +26,12 @@
 
 // El tamaño de bits que probar
 `define BIT_SIZE 8  //probamos con ocho bits para que los coverpoints se encuentren dentro del margen que puede manejar esta construccion
+
+/**
+ * ARCHIVO MODELO DE TESTBENCH
+ * REQUIERE ALGUNOS DEFINE PARA FUNCIONAR.
+ * SE DEFINEN EN testbench_algoritmico y testbench_segmentado
+ */
 
 
 // * NO CAMBIAR
@@ -73,12 +84,12 @@ covergroup ValoresEntrada;
 	den_positiv: coverpoint Den {bins binsDenPos[(`BIN_SIZE)/2-1] = {[1:((`BIN_SIZE)/2)-1]};
                                 illegal_bins zero[1] ={0};}     //denominador = 0 es un estado ilegal
 	den_negativ: coverpoint Den {bins binsDenNeg[(`BIN_SIZE)/2] ={[-((`BIN_SIZE)/2):-1]};}
-    num_positiv: coverpoint Num {bins binsNumPos[(`BIN_SIZE)/2] ={[-((`BIN_SIZE)/2):-1]};}
+    num_negativ: coverpoint Num {bins binsNumPos[(`BIN_SIZE)/2] ={[-((`BIN_SIZE)/2):-1]};}
 
     crosspoint1: cross num_positiv,den_positiv; //combinatoria de numerador positivo y denominador positivo
     crosspoint2: cross num_positiv,den_negativ; //combinatoria de numerador positivo y denominador negativo
-    crosspoint3: cross num_positiv,den_positiv; //combinatoria de numerador negativo y denominador positivo
-    crosspoint4: cross num_positiv,den_negativ; //combinatoria de numerador negativo y denominador negativo
+    crosspoint3: cross num_negativ,den_positiv; //combinatoria de numerador negativo y denominador positivo
+    crosspoint4: cross num_negativ,den_negativ; //combinatoria de numerador negativo y denominador negativo
 endgroup
 covergroup ValoresSalida @(negedge Done);
     cocientes1: coverpoint Coc {bins binsCocPos[(`BIN_SIZE)/2] = {[0:((`BIN_SIZE)/2)-1]};}
@@ -96,7 +107,7 @@ ValoresEntrada vals;
 ValoresSalida valo;
 
 // Declaración de módulos
-Divisor_Algoritmico #(
+`MODULO #(
     .tamanyo(`BIT_SIZE)
 ) divisor (
     .CLK(CLK),
