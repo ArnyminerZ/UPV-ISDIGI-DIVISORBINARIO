@@ -74,8 +74,8 @@ generate
                      end
                   else                 // Si no se activa el reset , sino que la operación va a quedar como concluida -->
                      begin 
-                        Coc <= (SignNum[i-1]^SignDen[i-1]) ? (~Q[i-1]+1) : Q[i-1];  // 
-                        Res <= (SignNum[i-1]) ? (~ACCU[i-1]+1) : ACCU[i-1];         //
+                        Coc <= (SignNum[i-1]^SignDen[i-1]) ? (~Q[i-1]+1) : Q[i-1];  // Si se cumple que ((SignNum[i-1] XOR SignDen[i-1]) == 1) entonces el valor de cociente cogerá el resultado negado del contador del cociente en ese instante (~Q[i-1]), pero con un aumento (~Q[i-1]+1), y si no se cumple coge tal cual el valor en ese instante del cociente.
+                        Res <= (SignNum[i-1]) ? (~ACCU[i-1]+1) : ACCU[i-1];         // Si se cumple que el signo está activo en ese instante, se le asiganrá al resto el valor negado y aumentado del acumulador en ese instante de tiempo y si no se cumple, cogerá el valor actual de (ACCU[i-1])
                         Done <= Done_mem[i-1];        // Actualizamos el valor del start con el valor que se haya guardado en el último módulo realizado en el default.
                      end
                end
