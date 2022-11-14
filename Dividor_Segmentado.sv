@@ -1,28 +1,25 @@
 `include "Aux_Segmentado.sv"
 
-module Dividor_Segmentado 
-
-// Declaramos aquí los parameters que vayamos a usar -->
-#(
-    parameter integer tamanyo = 32         // El tamaño es de 32 bits
-)
-
-// Declaramos aquí entradas y salidas --> 
-(
+module Dividor_Segmentado #(
+   // Declaramos aquí los parameters que vayamos a usar -->
+   parameter integer tamanyo = 32         // El tamaño es de 32 bits
+)(
+   // Declaramos aquí entradas y salidas --> 
 
 	// Entradas --> 
     input logic CLK , RSTa , Start ,  // Declaramos la entrada de reloj , el Reset high lvl y la entrada higg lvl de iniciación de la operación(Start)
     input logic [tamanyo-1:0] Num , Den , // Declaramos las entradas del numerador(Num) y del denominador (Den) de 32 bits de tamaño [31:0]
     // Outputs -->
     output logic Done ,  // Declaramos la salida Done para ver cuando justo acaba de hacer la división
-    output logic [tamanyo-1:0] Coc , Res,    // Declaramos las salidas del cociente (Coc) 
+    output logic [tamanyo-1:0] Coc , Res    // Declaramos las salidas del cociente (Coc) 
                                             // y  del Resto (Res) del resultado de la división entre 
-                                            // el numerador y el divisor   (32 bits también)
-   logic [tamanyo-1:0] Num_c2s [tamanyo-1:0],
-   logic [tamanyo-1:0] Q       [tamanyo-1:0] , 
-                                                
-   logic [tamanyo-1:0] Done_mem       
+                                            // el numerador y el divisor   (32 bits también)      
 );
+
+logic [tamanyo-1:0] [tamanyo-1:0] Num_c2s;
+logic [tamanyo-1:0] [tamanyo-1:0] Q      ;
+
+logic [tamanyo-1:0] Done_mem;
 
 /* 
    Queremos realizar un Divisor Segmentado, es decir un divisor algoritmico pero que realize dicha 
@@ -49,7 +46,9 @@ generate
          case(i)
 
             0:    // Módulo en cuanto la cuenta está sin empezar y justo se Activa la señal de cmoienzo
-               Aux_Segmentado #(.tamanyo(tamanyo)) Comienzo_Division (     // Declaramos la primera instancia del divisor auxiliar que permite
+               Aux_Segmentado #(
+                  .tamanyo(tamanyo)
+               ) Comienzo_Division (     // Declaramos la primera instancia del divisor auxiliar que permite
                                                                            // iniciar la cadena de sumadores
                   .CLK(CLK),     // Conectamos el CLK de la instancia al del módulo
                   .RSTa(RSTa),   // Conectamos el RSTa de la instancia al del módulo

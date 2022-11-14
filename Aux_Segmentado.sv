@@ -2,10 +2,10 @@ module Aux_Segmentado #(
     parameter integer tamanyo = 32
 )(
     // ! Entradas ! \\
-    input CLK, RSTa, Start,
-    input [tamanyo-1:0] Q,
-    input [tamanyo-1:0] Den_abs, Den_c2s,
-    input [tamanyo-1:0] Num_c2s,
+    input logic CLK, RSTa, Start,
+    input logic [tamanyo-1:0] Q,
+    input logic [tamanyo-1:0] Den_abs, Den_c2s,
+    input logic [tamanyo-1:0] Num_c2s,
 
     // ! Salidas ! \\
     output logic [tamanyo-1:0] Q_out,

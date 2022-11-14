@@ -1,4 +1,5 @@
-`include "../Divisor_Algoritmico.sv"
+//`include "../Divisor_Algoritmico.sv"
+`include "../Dividor_Segmentado.sv"
 
 // Se puede definir debug para obtener registros más detallados
 `define DEBUG
@@ -17,7 +18,7 @@
 `define TB_COVERAGE 90
 
 // El tamaño de bits que probar
-`define BIT_SIZE 16
+`define BIT_SIZE 32
 
 
 // * NO CAMBIAR
@@ -73,7 +74,8 @@ Bus bus_inst;
 Valores vals;
 
 // Declaración de módulos
-Divisor_Algoritmico #(
+// Divisor_Algoritmico #(
+Dividor_Segmentado #(
     .tamanyo(`BIT_SIZE)
 ) divisor (
     .CLK(CLK),
@@ -161,6 +163,8 @@ initial begin
     $display("  Esperando...");
     esperaAComprobar();
     $display("  Primer ciclo completado!");
+
+    $stop;
 
     $display("> Simulando...");
     // $display("> Probando con numerador y denominador positivos, division exacta...");
