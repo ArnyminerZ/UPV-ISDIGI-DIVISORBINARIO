@@ -15,7 +15,7 @@ module Dividor_Segmentado #(
                                             // el numerador y el divisor   (32 bits también)      
 );
 
-localparam etapas=tamanyo; //2**tamanyo;
+localparam etapas=2**tamanyo;
 
 logic [etapas-1:0][tamanyo-1:0] ACCU, Q, M;  // Declaramos el acumulador, el contador del cociente y el del resto
 logic [etapas-1:0] SignNum, SignDen, Done_mem;  // Declaramos los array del signo del numerador, denominador y el estado de paso realizado en memoria
