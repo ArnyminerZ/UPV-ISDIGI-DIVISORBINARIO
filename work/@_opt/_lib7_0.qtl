@@ -1,0 +1,657 @@
+m255
+K4
+z2
+!s11f vlog 2020.2 2020.04, Apr 19 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dC:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI
+T_opt
+!s110 1668395546
+VR@Lh9nXGP6hKjHX<R12k@3
+Z1 04 16 4 work banco_de_pruebas fast 0
+=1-502b73b50555-6371b21a-1ff-43b8
+Z2 o-quiet -auto_acc_if_foreign -work work +acc
+Z3 tCvgOpt 0
+n@_opt
+Z4 OL;O;2020.2;71
+T_opt1
+!s110 1668265561
+VQ9VZjh^eAab^K?0bS7z4@1
+R1
+=1-f44637b4b04a-636fb659-259-5838
+o-quiet -auto_acc_if_foreign -work work
+R3
+n@_opt1
+R4
+R0
+T_opt2
+!s110 1668363963
+VhSE8m;fCizdleAl^HQTVC0
+04 19 4 work tb_divisor_parallel fast 0
+=1-502b73b50555-637136bb-91-1cac
+R2
+R3
+n@_opt2
+R4
+R0
+vAux_Segmentado
+Z5 !s105 testbench_sv_unit
+Z6 DXx4 work 17 testbench_sv_unit 0 22 oVUdhT>iD=_RZihn:5@AY3
+Z7 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+Z8 !s110 1668395541
+!i10b 1
+!s100 jzIiPCfYV^0T[k6Ae^za30
+Z9 !s11b Dg1SIo80bB@j0V0VzS_@n1
+IPFFKkVLKi7dYKIbQXiWTX0
+Z10 VDg1SIo80bB@j0V0VzS_@n1
+S1
+R0
+w1668394179
+8Aux_Segmentado.sv
+Z11 FAux_Segmentado.sv
+!i122 176
+L0 1 33
+Z12 OL;L;2020.2;71
+r1
+!s85 0
+31
+Z13 !s108 1668395541.000000
+Z14 !s107 Aux_Segmentado.sv|C:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\Dividor_Segmentado.sv|C:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/testbench.sv|
+Z15 !s90 -reportprogress|300|-work|work|C:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/testbench.sv|
+!i113 0
+Z16 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R3
+n@aux_@segmentado
+vbanco_de_pruebas
+R7
+R6
+R8
+R10
+r1
+!s85 0
+!i10b 1
+!s100 =bAadnJA<z>kWi;VPmecB0
+I>FDz?]J1;=UQl:K`BzRRn1
+R5
+S1
+R0
+Z17 w1668395538
+Z18 8C:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/testbench.sv
+Z19 FC:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/testbench.sv
+!i122 176
+L0 58 194
+R12
+31
+R13
+R14
+R15
+!i113 0
+R16
+R3
+vDividor_Segmentado
+R5
+R6
+R7
+R8
+!i10b 1
+!s100 IEOXlSGYWJ3@7ziSIc[Vl3
+R9
+IDM4^bX@>;0U[ZGX8]dG8?0
+R10
+S1
+R0
+w1668394775
+8C:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\Dividor_Segmentado.sv
+Z20 FC:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\Dividor_Segmentado.sv
+!i122 176
+L0 12 104
+R12
+r1
+!s85 0
+31
+R13
+R14
+R15
+!i113 0
+R16
+R3
+n@dividor_@segmentado
+vDivisor_Algoritmico
+R7
+!s110 1668383068
+!i10b 1
+!s100 EFYkhnVEjVg`z]@V<`z<n3
+R9
+IdG7DP7m69XFaaC3z<Q7NR0
+R10
+S1
+R0
+w1668379420
+8C:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\Divisor_Algoritmico.sv
+FC:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\Divisor_Algoritmico.sv
+!i122 99
+L0 1 122
+R12
+r1
+!s85 0
+31
+!s108 1668383068.000000
+!s107 C:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\Dividor_Segmentado.sv|C:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\Divisor_Algoritmico.sv|C:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/testbench.sv|
+R15
+!i113 0
+R16
+R3
+n@divisor_@algoritmico
+vDivisor_D12
+R5
+Z21 DXx4 work 17 testbench_sv_unit 0 22 4i>iF=lXzBn2iG==W7Sb;0
+R7
+Z22 !s110 1668392089
+!i10b 1
+!s100 903TF7maF<S4PflG[GODP0
+R9
+ITJ<:UdEe7[:hELaB=NMU02
+R10
+S1
+R0
+Z23 w1668389517
+8C:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\xtra\Divisor_D12.sv
+FC:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\xtra\Divisor_D12.sv
+!i122 152
+L0 1 69
+R12
+r1
+!s85 0
+31
+Z24 !s108 1668392089.000000
+Z25 !s107 C:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\xtra\Divisor_Segmentado.sv|C:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\xtra\Divisor_D12.sv|C:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/testbench.sv|
+R15
+!i113 0
+R16
+R3
+n@divisor_@d12
+vdivisor_parallel
+R7
+!s110 1668367858
+!i10b 1
+!s100 Z2eT51Z3fQ^gQKSnh3YoL1
+R9
+IX<Mj7ZKg0WiX:3SU:FO3l3
+R10
+S1
+R0
+w1666165702
+8C:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/divisor_parallel.sv
+FC:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/divisor_parallel.sv
+!i122 95
+L0 18 54
+R12
+r1
+!s85 0
+31
+!s108 1668367858.000000
+!s107 C:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/divisor_parallel.sv|
+!s90 -reportprogress|300|-work|work|C:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/divisor_parallel.sv|
+!i113 0
+R16
+R3
+vDivisor_Segmentado
+R5
+R21
+R7
+R22
+!i10b 1
+!s100 ]N>2g=Eh[;gUXQ`i5Q8V43
+R9
+I`DnIFN<ocdfYj<Oa62`lz3
+R10
+S1
+R0
+R23
+8C:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\xtra\Divisor_Segmentado.sv
+FC:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\xtra\Divisor_Segmentado.sv
+!i122 152
+L0 1 86
+R12
+r1
+!s85 0
+31
+R24
+R25
+R15
+!i113 0
+R16
+R3
+n@divisor_@segmentado
+vtb_divisor_parallel
+R7
+!s110 1668363908
+!i10b 1
+!s100 d2f_lN?5ahJf::GBP25oN1
+R9
+IBK@G6zWTMc7eV4eT:I41m3
+R10
+S1
+R0
+w1668363780
+8C:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/tb_divisor_parallel.sv
+FC:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/tb_divisor_parallel.sv
+!i122 70
+L0 1 166
+R12
+r1
+!s85 0
+31
+!s108 1668363908.000000
+!s107 C:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/tb_divisor_parallel.sv|
+!s90 -reportprogress|300|-work|work|C:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/tb_divisor_parallel.sv|
+!i113 0
+R16
+R3
+Xtestbench_sv_unit
+R7
+R8
+VoVUdhT>iD=_RZihn:5@AY3
+r1
+!s85 0
+!i10b 1
+!s100 fO<]ehGM7f<R2z>dm@ATe1
+IoVUdhT>iD=_RZihn:5@AY3
+!i103 1
+S1
+R0
+R17
+R18
+R19
+R20
+R11
+!i122 176
+L0 35 0
+R12
+31
+R13
+R14
+R15
+!i113 0
+R16
+R3
+m255
+K4
+z2
+!s8c locked
+!s11f vlog 2020.2 2020.04, Apr 19 2020
+!s95 MTI
+cModel Technology Builtin Library
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+dC:/cygwin/pc_home/rhino/buildsites/2020.p/builds/win64/modeltech
+XMTI_CSTDLIB
+Z0 DXx4 work 3 STD 0 22 C5P`]aF5g@jYQiTVH86>n3
+Z1 !s110 1587353803
+!i10b 1
+!s100 icQCI_Oj3>0h:SB`A4JWn0
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I2B]QM]?FN1P9NZGF>TCVV0
+V2B]QM]?FN1P9NZGF>TCVV0
+S1
+!s86 1
+Z3 d$MODEL_TECH/..
+Z4 w1587353643
+Z5 8verilog_src/dpi_cpack/dpi_cpackages.sv
+Z6 Fverilog_src/dpi_cpack/dpi_cpackages.sv
+!i122 3
+Z7 L0 17 0
+Z8 OL;L;2020.2;71
+r1
+!s85 0
+31
+Z9 !s108 1587353803.000000
+Z10 !s107 verilog_src/dpi_cpack/dpi_cpackages.sv|
+Z11 !s90 -debuglib|-suppress|12110|-u|-sv|-s|-work|sv_std|-dirpath|$MODEL_TECH/..|verilog_src/dpi_cpack/dpi_cpackages.sv|
+!i113 1
+Z12 o-suppress 12110 -debuglib -u -sv -s -work sv_std -dirpath {$MODEL_TECH/..} -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z13 tCvgOpt 0
+n@m@t@i_@c@s@t@d@l@i@b
+Xmti_cstdlib
+Z14 DXx4 work 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+R1
+!i10b 1
+!s100 OW0mb1CF=jV3nlik?oMRV0
+R2
+I7YQT9N??5=d:Wzg^n=:fZ2
+V7YQT9N??5=d:Wzg^n=:fZ2
+S1
+R3
+R4
+R5
+R6
+!i122 2
+R7
+R8
+r1
+!s85 0
+31
+R9
+R10
+Z15 !s90 -debuglib|-suppress|12110|-sv|-s|-work|sv_std|-dirpath|$MODEL_TECH/..|verilog_src/dpi_cpack/dpi_cpackages.sv|
+!i113 1
+Z16 o-suppress 12110 -debuglib -sv -s -work sv_std -dirpath {$MODEL_TECH/..} -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R13
+XMTI_CSTRING
+R0
+R1
+!i10b 1
+!s100 kDlQo?nkDBVoK<AS]3QjD1
+R2
+ILecfHDQ26AMY35bfFmmT_3
+VLecfHDQ26AMY35bfFmmT_3
+S1
+!s86 1
+R3
+R4
+R5
+R6
+!i122 3
+Z17 L0 28 0
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 1
+R12
+R13
+n@m@t@i_@c@s@t@r@i@n@g
+Xmti_cstring
+R14
+R1
+!i10b 1
+!s100 KaVS423PbHN8BiZUD@GGL2
+R2
+I]IJ]dNQG`4CJEj@oIV4_Y1
+V]IJ]dNQG`4CJEj@oIV4_Y1
+S1
+R3
+R4
+R5
+R6
+!i122 2
+R17
+R8
+r1
+!s85 0
+31
+R9
+R10
+R15
+!i113 1
+R16
+R13
+XMTI_DEBUG
+R0
+R1
+!i10b 1
+!s100 TB]^ezUTiRTalgCgbO]<l3
+R2
+ILT0iZ><B;KMlBmS_S<>bW2
+VLT0iZ><B;KMlBmS_S<>bW2
+S1
+!s86 1
+R3
+R4
+R5
+R6
+!i122 3
+Z18 L0 47 0
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 1
+R12
+R13
+n@m@t@i_@d@e@b@u@g
+Xmti_debug
+R14
+R1
+!i10b 1
+!s100 ^b=Bi@Q2JjgYiFl;:40Sc1
+R2
+IMhYD3DEHh;3nkFMn>d<UC3
+VMhYD3DEHh;3nkFMn>d<UC3
+S1
+R3
+R4
+R5
+R6
+!i122 2
+R18
+R8
+r1
+!s85 0
+31
+R9
+R10
+R15
+!i113 1
+R16
+R13
+XMTI_FCOVER
+R0
+Z19 !s110 1587353804
+!i10b 1
+!s100 fK:8]FFZh3P`7Fl@:5aC70
+R2
+I0OQnzn:_bU33b7^0l3Zfk1
+V0OQnzn:_bU33b7^0l3Zfk1
+S1
+!s86 1
+R3
+Z20 w1587353642
+Z21 8verilog_src/mti_sv/fcover.sv
+Z22 Fverilog_src/mti_sv/fcover.sv
+!i122 7
+Z23 L0 5 0
+R8
+r1
+!s85 0
+31
+Z24 !s108 1587353804.000000
+Z25 !s107 verilog_src/mti_sv/fcover.sv|
+!s90 -debuglib|-suppress|12110|-u|-sv|-s|-work|sv_std|-dirpath|$MODEL_TECH/..|verilog_src/mti_sv/fcover.sv|
+!i113 1
+R12
+R13
+n@m@t@i_@f@c@o@v@e@r
+Xmti_fcover
+R14
+R19
+!i10b 1
+!s100 efa[11Ul`>0g6:zg_Xi1E0
+R2
+IIh9jDXlg9:E34a:]f_gAg1
+VIh9jDXlg9:E34a:]f_gAg1
+S1
+R3
+R20
+R21
+R22
+!i122 6
+R23
+R8
+r1
+!s85 0
+31
+R24
+R25
+!s90 -debuglib|-suppress|12110|-sv|-s|-work|sv_std|-dirpath|$MODEL_TECH/..|verilog_src/mti_sv/fcover.sv|
+!i113 1
+R16
+R13
+XMTI_FLI
+R0
+R1
+!i10b 1
+!s100 n_2PQUlSo15MDNG48]QWl2
+R2
+I>zPK83f9c>_UScHVSd;CN2
+V>zPK83f9c>_UScHVSd;CN2
+S1
+!s86 1
+R3
+R4
+R5
+R6
+!i122 3
+Z26 L0 4 0
+R8
+r1
+!s85 0
+31
+R9
+R10
+R11
+!i113 1
+R12
+R13
+n@m@t@i_@f@l@i
+Xmti_fli
+R14
+R1
+!i10b 1
+!s100 kSbeP86I0@SfQi;i57@W00
+R2
+IB85Hkm<ANkM<`JN1dFJde3
+VB85Hkm<ANkM<`JN1dFJde3
+S1
+R3
+R4
+R5
+R6
+!i122 2
+R26
+R8
+r1
+!s85 0
+31
+R9
+R10
+R15
+!i113 1
+R16
+R13
+XMTI_SCDPI
+R0
+R1
+!i10b 1
+!s100 L3B:Y?;k0V0PDi<?0ec=93
+R2
+I5fToGUlJlG5K2mk3MRG<21
+V5fToGUlJlG5K2mk3MRG<21
+S1
+!s86 1
+R3
+R4
+Z27 8verilog_src/dpi_cpack/scdpi.sv
+Z28 Fverilog_src/dpi_cpack/scdpi.sv
+!i122 5
+Z29 L0 1 0
+R8
+r1
+!s85 0
+31
+R9
+Z30 !s107 verilog_src/dpi_cpack/scdpi.sv|
+!s90 -debuglib|-suppress|12110|-u|-sv|-s|-work|sv_std|-dirpath|$MODEL_TECH/..|verilog_src/dpi_cpack/scdpi.sv|
+!i113 1
+R12
+R13
+n@m@t@i_@s@c@d@p@i
+Xmti_scdpi
+R14
+R1
+!i10b 1
+!s100 Y]PX:=_5`zJ63fMJVe^_M3
+R2
+IOjFKWz`5YeLO>M8M6l4Q:3
+VOjFKWz`5YeLO>M8M6l4Q:3
+S1
+R3
+R4
+R27
+R28
+!i122 4
+R29
+R8
+r1
+!s85 0
+31
+R9
+R30
+!s90 -debuglib|-suppress|12110|-sv|-s|-work|sv_std|-dirpath|$MODEL_TECH/..|verilog_src/dpi_cpack/scdpi.sv|
+!i113 1
+R16
+R13
+XSTD
+R1
+!i10b 1
+!s100 EKK>A5XKXXLOz9iKzP2G81
+R2
+IC5P`]aF5g@jYQiTVH86>n3
+VC5P`]aF5g@jYQiTVH86>n3
+S1
+!s86 1
+R3
+R20
+Z31 8verilog_src/std/std.sv
+Z32 Fverilog_src/std/std.sv
+!i122 1
+Z33 L0 6 0
+R8
+r1
+!s85 0
+31
+R9
+Z34 !s107 verilog_src/std/std.sv|
+!s90 -debuglib|-suppress|12110|-u|-sv|-s|-work|sv_std|-dirpath|$MODEL_TECH/..|verilog_src/std/std.sv|
+!i113 1
+R12
+R13
+n@s@t@d
+Xstd
+R1
+!i10b 1
+!s100 ]i[_JOYIoOMc`AEjL2EkC0
+R2
+I9oUSJO;AeEaW`l:M@^WG92
+V9oUSJO;AeEaW`l:M@^WG92
+S1
+R3
+R20
+R31
+R32
+!i122 0
+R33
+R8
+r1
+!s85 0
+31
+R9
+R34
+!s90 -debuglib|-suppress|12110|-sv|-s|-work|sv_std|-dirpath|$MODEL_TECH/..|verilog_src/std/std.sv|
+!i113 1
+R16
+R13
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
