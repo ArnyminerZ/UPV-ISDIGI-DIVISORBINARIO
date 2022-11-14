@@ -18,7 +18,7 @@
 `define TB_COVERAGE 90
 
 // El tamaño de bits que probar
-`define BIT_SIZE 32
+`define BIT_SIZE 16
 
 
 // * NO CAMBIAR

@@ -2,12 +2,12 @@
 
 module Dividor_Segmentado #(
    // Declaramos aquí los parameters que vayamos a usar -->
-   parameter integer tamanyo = 32         // El tamaño es de 32 bits
+   parameter tamanyo = 32         // El tamaño es de 32 bits
 )(
    // Declaramos aquí entradas y salidas --> 
 
 	// Entradas --> 
-    input logic CLK , RSTa , Start ,  // Declaramos la entrada de reloj , el Reset high lvl y la entrada higg lvl de iniciación de la operación(Start)
+    input CLK , RSTa , Start ,  // Declaramos la entrada de reloj , el Reset high lvl y la entrada higg lvl de iniciación de la operación(Start)
     input logic [tamanyo-1:0] Num , Den , // Declaramos las entradas del numerador(Num) y del denominador (Den) de 32 bits de tamaño [31:0]
     // Outputs -->
     output logic Done ,  // Declaramos la salida Done para ver cuando justo acaba de hacer la división
@@ -16,12 +16,10 @@ module Dividor_Segmentado #(
                                             // el numerador y el divisor   (32 bits también)      
 );
 
-localparam etapas=2**tamanyo;
+localparam etapas=tamanyo; //2**tamanyo;
 
-logic [etapas-1:0] [tamanyo-1:0] Num_c2s;
-logic [etapas-1:0] [tamanyo-1:0] Q      ;
-
-logic [etapas-1:0] Done_mem;
+logic [etapas-1:0] ACCU, Q, M [tamanyo-1:0];
+logic [etapas-1:0] SignNum, SignDen, Done_mem;
 
 /* 
    Queremos realizar un Divisor Segmentado, es decir un divisor algoritmico pero que realize dicha 
@@ -39,7 +37,7 @@ logic [etapas-1:0] Done_mem;
 genvar i ;
 generate
    for(i = 0; i<(etapas+1) ; i = i+1)  // Empezamos con i=0 hasta que i llegue como máximo a 32, va incrementando el bit de 1 en 1 (i=i+1)
-      begin
+      begin :generador
          //  Como se van a generar 32 módulos, usaremos un case/default para realizarlo, donde solo
          // se llegarán a declarar los módulos 0 y 32 de forma directa y en el default estarán los
          // 30 módulos restantes ya que estos dependen dirécatemente del módulo anterior y operan de igual forma
@@ -55,16 +53,20 @@ generate
                   .CLK(CLK),     // Conectamos el CLK de la instancia al del módulo
                   .RSTa(RSTa),   // Conectamos el RSTa de la instancia al del módulo
                   .Start(Start), // Conectamos el Start de la instancia al del módulo
-                  .Q('0),
-                  .Den_c2s(!Den[tamanyo-1] ? (~Den+1) : Den),
-                  .Den_abs(!Den[tamanyo-1] ? Den : (~Den+1)),
-                  .Num_c2s(!Num[tamanyo-1] ? Num : (~Num+1)), // Es el sumador para el residuo
-                  .Q_out(Q[0]),
-                  .Num_c2s_out(Num_c2s[0]),
-                  .Done(Done_mem[0])
+                  .SignNum(Num[tamanyo-1]),
+                  .SignDen(Den[tamanyo-1]),
+                  .ACCU('0),
+                  .Q(Num[tamanyo-1] ? (~Num+1) : Num),
+                  .M(Den[tamanyo-1] ? (~Den+1) : Den),
+                  .ACCU_out(ACCU[i]),
+                  .Q_out(Q[i]),
+                  .M_out(M[i]),
+                  .SignNum_out(SignNum[i]),
+                  .SignDen_out(SignDen[i]),
+                  .Done(Done_mem[i])
                );
 
-            (tamanyo):    // Módulo en cuanto la cuenta llega a su fin y se completa la división, aquí asignamos el valor final -->
+            (etapas):    // Módulo en cuanto la cuenta llega a su fin y se completa la división, aquí asignamos el valor final -->
                always_ff @(posedge CLK,negedge RSTa) // Declaramos un bloque procedurar always_ff en el que se activa a ciclo de reloj ascendente
                begin                                 // o cuando se active el reseteo de la operación. 
                   if(!RSTa)            // Si se quiere resetear -->
@@ -75,8 +77,8 @@ generate
                      end
                   else                 // Si no se activa el reset , sino que la operación va a quedar como concluida -->
                      begin 
-                        Coc <= (!Num[tamanyo-1] == !Den[tamanyo-1]) ? Q[i-1] : (~Q[i-1]+1);
-                        Res <= (Num[tamanyo-1]) ? (~Num_c2s[i-1]+1) : Num_c2s[i-1];
+                        Coc <= (SignNum[i-1]^SignDen[i-1]) ? (~Q[i-1]+1) : Q[i-1];
+                        Res <= (SignNum[i-1]) ? (~ACCU[i-1]+1) : ACCU[i-1];
                         Done <= Done_mem[i-1];
                      end
                end
@@ -89,12 +91,16 @@ generate
                   .CLK(CLK),     // Conectamos el CLK de la instancia al del módulo
                   .RSTa(RSTa),   // Conectamos el RSTa de la instancia al del módulo
                   .Start(Done_mem[i-1]),  // Conectamos el Start de la instancia al ---------
+                  .SignNum(SignNum[i-1]),
+                  .SignDen(SignDen[i-1]),
+                  .ACCU(ACCU[i-1]),
                   .Q(Q[i-1]),
-                  .Den_c2s(!Den[tamanyo-1] ? (~Den+1) : Den),
-                  .Den_abs(!Den[tamanyo-1] ? Den : (~Den+1)),
-                  .Num_c2s(Num_c2s[i-1]),
+                  .M(M[i-1]),
+                  .ACCU_out(ACCU[i]),
                   .Q_out(Q[i]),
-                  .Num_c2s_out(Num_c2s[i]),
+                  .M_out(M[i]),
+                  .SignNum_out(SignNum[i]),
+                  .SignDen_out(SignDen[i]),
                   .Done(Done_mem[i])
 
                );

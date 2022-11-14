@@ -10,10 +10,10 @@ z2
 cModel Technology
 Z0 dC:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI
 T_opt
-!s110 1668388602
-VD>j4S3dY44_VNcETMO3KS2
+!s110 1668392147
+VTOVinlSS<0H]g<njnnfnI3
 Z1 04 16 4 work banco_de_pruebas fast 0
-=1-502b73b50555-637196f9-3d6-68a4
+=1-502b73b50555-6371a4d3-f4-1f78
 Z2 o-quiet -auto_acc_if_foreign -work work +acc
 Z3 tCvgOpt 0
 n@_opt
@@ -40,26 +40,26 @@ R4
 R0
 vAux_Segmentado
 Z5 !s105 testbench_sv_unit
-Z6 DXx4 work 17 testbench_sv_unit 0 22 [n;@QKT^^MjWimH7zjBU>2
+Z6 DXx4 work 17 testbench_sv_unit 0 22 GZ0=Zg;_@b35X=K28X:Um2
 Z7 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
-Z8 !s110 1668388595
+Z8 !s110 1668392142
 !i10b 1
-!s100 I5Z?A5kOh2cD^;2^CE7Nn1
+!s100 7cROSMeh2^9`j2N^d3`T[1
 Z9 !s11b Dg1SIo80bB@j0V0VzS_@n1
-I`SiEhl`aEhNeF<mm<TUYI2
+IK=zDe;2:P23;d_JMVBe1i2
 Z10 VDg1SIo80bB@j0V0VzS_@n1
 S1
 R0
-w1668387951
+w1668391987
 8Aux_Segmentado.sv
 Z11 FAux_Segmentado.sv
-!i122 145
-L0 1 29
+!i122 153
+L0 1 35
 Z12 OL;L;2020.2;71
 r1
 !s85 0
 31
-Z13 !s108 1668388595.000000
+Z13 !s108 1668392142.000000
 Z14 !s107 Aux_Segmentado.sv|C:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\Dividor_Segmentado.sv|C:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/testbench.sv|
 Z15 !s90 -reportprogress|300|-work|work|C:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/testbench.sv|
 !i113 0
@@ -74,16 +74,16 @@ R10
 r1
 !s85 0
 !i10b 1
-!s100 eEnHT9C=c@HiL<h]Xbc>00
-IBMhoj:h8WdKf58B4mP9XD1
+!s100 9BQbC^[C]J8_2OJ6H1bg11
+IzPdiEd^6V62=KOVBEUX3g2
 R5
 S1
 R0
-w1668388175
-Z17 8C:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/testbench.sv
-Z18 FC:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/testbench.sv
-!i122 145
-L0 56 181
+Z17 w1668392132
+Z18 8C:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/testbench.sv
+Z19 FC:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/testbench.sv
+!i122 153
+L0 56 183
 R12
 31
 R13
@@ -98,17 +98,17 @@ R6
 R7
 R8
 !i10b 1
-!s100 mlgjDBgO3[RPfI4VU7P7m3
+!s100 Cfb:<I=Yj2e22mBe9iiFI3
 R9
-I052@mJdDPWWjf7N@Tiz?i3
+IY7goF@Y1zB8@4fU8DUi473
 R10
 S1
 R0
-Z19 w1668388584
-Z20 8C:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\Dividor_Segmentado.sv
-Z21 FC:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\Dividor_Segmentado.sv
-!i122 145
-L0 3 105
+w1668391984
+8C:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\Dividor_Segmentado.sv
+Z20 FC:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\Dividor_Segmentado.sv
+!i122 153
+L0 3 111
 R12
 r1
 !s85 0
@@ -146,6 +146,34 @@ R15
 R16
 R3
 n@divisor_@algoritmico
+vDivisor_D12
+R5
+Z21 DXx4 work 17 testbench_sv_unit 0 22 4i>iF=lXzBn2iG==W7Sb;0
+R7
+Z22 !s110 1668392089
+!i10b 1
+!s100 903TF7maF<S4PflG[GODP0
+R9
+ITJ<:UdEe7[:hELaB=NMU02
+R10
+S1
+R0
+Z23 w1668389517
+8C:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\xtra\Divisor_D12.sv
+FC:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\xtra\Divisor_D12.sv
+!i122 152
+L0 1 69
+R12
+r1
+!s85 0
+31
+Z24 !s108 1668392089.000000
+Z25 !s107 C:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\xtra\Divisor_Segmentado.sv|C:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\xtra\Divisor_D12.sv|C:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/testbench.sv|
+R15
+!i113 0
+R16
+R3
+n@divisor_@d12
 vdivisor_parallel
 R7
 !s110 1668367858
@@ -173,27 +201,27 @@ R16
 R3
 vDivisor_Segmentado
 R5
-DXx4 work 17 testbench_sv_unit 0 22 mOjR4mZDf3mZNlg:^zB7M1
+R21
 R7
-!s110 1668383358
+R22
 !i10b 1
-!s100 8OKQdiMBI;_iNc`z=J^;:2
+!s100 ]N>2g=Eh[;gUXQ`i5Q8V43
 R9
-I0gK87P[EePARYKbIA54GX2
+I`DnIFN<ocdfYj<Oa62`lz3
 R10
 S1
 R0
-w1668383291
-R20
-R21
-!i122 104
-L0 1 101
+R23
+8C:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\xtra\Divisor_Segmentado.sv
+FC:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\xtra\Divisor_Segmentado.sv
+!i122 152
+L0 1 86
 R12
 r1
 !s85 0
 31
-!s108 1668383358.000000
-!s107 C:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\Dividor_Segmentado.sv|C:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/testbench.sv|
+R24
+R25
 R15
 !i113 0
 R16
@@ -227,21 +255,21 @@ R3
 Xtestbench_sv_unit
 R7
 R8
-V[n;@QKT^^MjWimH7zjBU>2
+VGZ0=Zg;_@b35X=K28X:Um2
 r1
 !s85 0
 !i10b 1
-!s100 1H:_eIifWVY3iT7f?ioXb0
-I[n;@QKT^^MjWimH7zjBU>2
+!s100 ARIcV2ac]9D;oV@g`Gf_N2
+IGZ0=Zg;_@b35X=K28X:Um2
 !i103 1
 S1
 R0
-R19
 R17
 R18
-R21
+R19
+R20
 R11
-!i122 145
+!i122 153
 L0 33 0
 R12
 31
