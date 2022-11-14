@@ -1,4 +1,4 @@
-`include "../Divisor_Algoritmico.sv"
+`include "../Dividor_Segmentado.sv"
 
 // Se puede definir debug para obtener registros más detallados
 `define DEBUG
@@ -58,7 +58,7 @@ constraint div_exactaaa {num%den == 0;}
 // constraint lim_grandeee {(abs(num)<32768) && (abs(den)<32768);}
 endclass
 
-module testbench_algoritmico;
+module testbench_segmentado;
 
 logic CLK, RSTa, Start;
 logic signed [`LAST_BIT:0] Num, Den;
@@ -95,7 +95,7 @@ ValoresEntrada vals;
 ValoresSalida valo;
 
 // Declaración de módulos
-Divisor_Algoritmico #(
+Dividor_Segmentado #(
     .tamanyo(`BIT_SIZE)
 ) divisor (
     .CLK(CLK),
