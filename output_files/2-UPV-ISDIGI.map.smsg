@@ -1,1 +1,1 @@
-Warning (10268): Verilog HDL information at Aux_Segmentado.sv(19): always construct contains both blocking and non-blocking assignments File: C:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/Aux_Segmentado.sv Line: 19
+Warning (10268): Verilog HDL information at Aux_Segmentado.sv(17): always construct contains both blocking and non-blocking assignments File: C:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/Aux_Segmentado.sv Line: 17
