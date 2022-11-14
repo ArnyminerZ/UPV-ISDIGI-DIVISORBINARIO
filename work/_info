@@ -10,10 +10,10 @@ z2
 cModel Technology
 Z0 dC:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI
 T_opt
-!s110 1668368609
-V?ZnLl[3mohEcBE`1?7Ua=0
+!s110 1668388602
+VD>j4S3dY44_VNcETMO3KS2
 Z1 04 16 4 work banco_de_pruebas fast 0
-=1-502b73b50555-637148e0-3bc-11e4
+=1-502b73b50555-637196f9-3d6-68a4
 Z2 o-quiet -auto_acc_if_foreign -work work +acc
 Z3 tCvgOpt 0
 n@_opt
@@ -38,68 +38,122 @@ R3
 n@_opt2
 R4
 R0
-vbanco_de_pruebas
-Z5 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
-Z6 DXx4 work 17 testbench_sv_unit 0 22 KIje5dD>RP[k<aQfS=mA12
-Z7 !s110 1668368604
-Z8 VDg1SIo80bB@j0V0VzS_@n1
-r1
-!s85 0
+vAux_Segmentado
+Z5 !s105 testbench_sv_unit
+Z6 DXx4 work 17 testbench_sv_unit 0 22 [n;@QKT^^MjWimH7zjBU>2
+Z7 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+Z8 !s110 1668388595
 !i10b 1
-!s100 b?a`9ShP??0cc>VXa<Y861
-I4AZm?5]@G9?M2eUiKPj][3
-Z9 !s105 testbench_sv_unit
+!s100 I5Z?A5kOh2cD^;2^CE7Nn1
+Z9 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I`SiEhl`aEhNeF<mm<TUYI2
+Z10 VDg1SIo80bB@j0V0VzS_@n1
 S1
 R0
-Z10 w1668368558
-Z11 8C:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/testbench.sv
-Z12 FC:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/testbench.sv
-!i122 98
-L0 55 178
-Z13 OL;L;2020.2;71
+w1668387951
+8Aux_Segmentado.sv
+Z11 FAux_Segmentado.sv
+!i122 145
+L0 1 29
+Z12 OL;L;2020.2;71
+r1
+!s85 0
 31
-Z14 !s108 1668368604.000000
-Z15 !s107 C:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\Divisor_Algoritmico.sv|C:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/testbench.sv|
-Z16 !s90 -reportprogress|300|-work|work|C:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/testbench.sv|
+Z13 !s108 1668388595.000000
+Z14 !s107 Aux_Segmentado.sv|C:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\Dividor_Segmentado.sv|C:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/testbench.sv|
+Z15 !s90 -reportprogress|300|-work|work|C:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/testbench.sv|
 !i113 0
-Z17 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+Z16 o-work work -L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
 R3
-vDivisor_Algoritmico
-R9
-R6
-R5
+n@aux_@segmentado
+vbanco_de_pruebas
 R7
-!i10b 1
-!s100 7OLLzD6YFPBmgP22T4nCi0
-Z18 !s11b Dg1SIo80bB@j0V0VzS_@n1
-IQnCHe^Q3Z<2[]nhFN90mF0
+R6
 R8
-S1
-R0
-w1668364649
-8C:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\Divisor_Algoritmico.sv
-Z19 FC:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\Divisor_Algoritmico.sv
-!i122 98
-L0 1 92
-R13
+R10
 r1
 !s85 0
+!i10b 1
+!s100 eEnHT9C=c@HiL<h]Xbc>00
+IBMhoj:h8WdKf58B4mP9XD1
+R5
+S1
+R0
+w1668388175
+Z17 8C:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/testbench.sv
+Z18 FC:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/testbench.sv
+!i122 145
+L0 56 181
+R12
 31
+R13
 R14
 R15
-R16
 !i113 0
-R17
+R16
+R3
+vDividor_Segmentado
+R5
+R6
+R7
+R8
+!i10b 1
+!s100 mlgjDBgO3[RPfI4VU7P7m3
+R9
+I052@mJdDPWWjf7N@Tiz?i3
+R10
+S1
+R0
+Z19 w1668388584
+Z20 8C:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\Dividor_Segmentado.sv
+Z21 FC:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\Dividor_Segmentado.sv
+!i122 145
+L0 3 105
+R12
+r1
+!s85 0
+31
+R13
+R14
+R15
+!i113 0
+R16
+R3
+n@dividor_@segmentado
+vDivisor_Algoritmico
+R7
+!s110 1668383068
+!i10b 1
+!s100 EFYkhnVEjVg`z]@V<`z<n3
+R9
+IdG7DP7m69XFaaC3z<Q7NR0
+R10
+S1
+R0
+w1668379420
+8C:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\Divisor_Algoritmico.sv
+FC:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\Divisor_Algoritmico.sv
+!i122 99
+L0 1 122
+R12
+r1
+!s85 0
+31
+!s108 1668383068.000000
+!s107 C:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\Dividor_Segmentado.sv|C:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\Divisor_Algoritmico.sv|C:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/testbench.sv|
+R15
+!i113 0
+R16
 R3
 n@divisor_@algoritmico
 vdivisor_parallel
-R5
+R7
 !s110 1668367858
 !i10b 1
 !s100 Z2eT51Z3fQ^gQKSnh3YoL1
-R18
+R9
 IX<Mj7ZKg0WiX:3SU:FO3l3
-R8
+R10
 S1
 R0
 w1666165702
@@ -107,7 +161,7 @@ w1666165702
 FC:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/divisor_parallel.sv
 !i122 95
 L0 18 54
-R13
+R12
 r1
 !s85 0
 31
@@ -115,16 +169,44 @@ r1
 !s107 C:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/divisor_parallel.sv|
 !s90 -reportprogress|300|-work|work|C:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/divisor_parallel.sv|
 !i113 0
-R17
+R16
 R3
-vtb_divisor_parallel
+vDivisor_Segmentado
 R5
+DXx4 work 17 testbench_sv_unit 0 22 mOjR4mZDf3mZNlg:^zB7M1
+R7
+!s110 1668383358
+!i10b 1
+!s100 8OKQdiMBI;_iNc`z=J^;:2
+R9
+I0gK87P[EePARYKbIA54GX2
+R10
+S1
+R0
+w1668383291
+R20
+R21
+!i122 104
+L0 1 101
+R12
+r1
+!s85 0
+31
+!s108 1668383358.000000
+!s107 C:\Users\Arnym\OneDrive - UPV\3-A\ISDIGI\Lab\2.UPV-ISDIGI\VerificameEsta\..\Dividor_Segmentado.sv|C:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/testbench.sv|
+R15
+!i113 0
+R16
+R3
+n@divisor_@segmentado
+vtb_divisor_parallel
+R7
 !s110 1668363908
 !i10b 1
 !s100 d2f_lN?5ahJf::GBP25oN1
-R18
+R9
 IBK@G6zWTMc7eV4eT:I41m3
-R8
+R10
 S1
 R0
 w1668363780
@@ -132,7 +214,7 @@ w1668363780
 FC:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/tb_divisor_parallel.sv
 !i122 70
 L0 1 166
-R13
+R12
 r1
 !s85 0
 31
@@ -140,31 +222,32 @@ r1
 !s107 C:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/tb_divisor_parallel.sv|
 !s90 -reportprogress|300|-work|work|C:/Users/Arnym/OneDrive - UPV/3-A/ISDIGI/Lab/2.UPV-ISDIGI/VerificameEsta/tb_divisor_parallel.sv|
 !i113 0
-R17
+R16
 R3
 Xtestbench_sv_unit
-R5
 R7
-VKIje5dD>RP[k<aQfS=mA12
+R8
+V[n;@QKT^^MjWimH7zjBU>2
 r1
 !s85 0
 !i10b 1
-!s100 :lzY1cX8^MelOhi[P4F@H3
-IKIje5dD>RP[k<aQfS=mA12
+!s100 1H:_eIifWVY3iT7f?ioXb0
+I[n;@QKT^^MjWimH7zjBU>2
 !i103 1
 S1
 R0
-R10
-R11
-R12
 R19
-!i122 98
-L0 32 0
-R13
+R17
+R18
+R21
+R11
+!i122 145
+L0 33 0
+R12
 31
+R13
 R14
 R15
-R16
 !i113 0
-R17
+R16
 R3
