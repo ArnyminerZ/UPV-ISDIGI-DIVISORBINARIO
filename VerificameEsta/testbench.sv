@@ -208,9 +208,8 @@ initial begin
     reiniciar();
     $display("> Simulando...");
 
-    // $display("> Probando con numerador y denominador positivos, division exacta...");
+    `ifdef TEST_NUM_POS_DEN_POS
     while ((vals.crosspoint1.get_inst_coverage() < `TB_COVERAGE)) begin
-        `ifdef TEST_NUM_POS_DEN_POS
         bus_inst.num_positivo.constraint_mode(1);
         bus_inst.num_negativo.constraint_mode(0);
         bus_inst.den_positivo.constraint_mode(1);
@@ -218,38 +217,41 @@ initial begin
         bus_inst.den_nozero.constraint_mode(1); //este modo debe estar siempre activo para no correr el riesgo de caer en estados ilegales
 
         rutina();
-        `endif
     end
+    `endif
+
+    `ifdef TEST_NUM_NEG_DEN_POS
     while ((vals.crosspoint2.get_inst_coverage() < `TB_COVERAGE)) begin   
-        `ifdef TEST_NUM_NEG_DEN_POS
         bus_inst.num_positivo.constraint_mode(1);
         bus_inst.num_negativo.constraint_mode(0);
         bus_inst.den_positivo.constraint_mode(0);
         bus_inst.den_negativo.constraint_mode(1);
 
         rutina();
-        `endif
     end
+    `endif
+
+    `ifdef TEST_NUM_POS_DEN_NEG
     while ((vals.crosspoint3.get_inst_coverage() < `TB_COVERAGE)) begin    
-        `ifdef TEST_NUM_POS_DEN_NEG
         bus_inst.num_positivo.constraint_mode(0);
         bus_inst.num_negativo.constraint_mode(1);
         bus_inst.den_positivo.constraint_mode(1);
         bus_inst.den_negativo.constraint_mode(0);
 
         rutina();
-        `endif
     end
-    while ((vals.crosspoint4.get_inst_coverage() < `TB_COVERAGE)) begin    
-        `ifdef TEST_NUM_NEG_DEN_NEG
+    `endif
+
+    `ifdef TEST_NUM_NEG_DEN_NEG
+    while ((vals.crosspoint4.get_inst_coverage() < `TB_COVERAGE)) begin
         bus_inst.num_positivo.constraint_mode(0);
         bus_inst.num_negativo.constraint_mode(1);
         bus_inst.den_positivo.constraint_mode(0);
         bus_inst.den_negativo.constraint_mode(1);
 
         rutina();
-        `endif
     end
+    `endif
 
     $display("  Completado!");
 
