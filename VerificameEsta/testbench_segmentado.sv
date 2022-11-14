@@ -69,16 +69,16 @@ event reset;
 event comprobado;
 
 covergroup ValoresEntrada;
-    coverpoint1: coverpoint Num {bins binsNumPos[(`BIN_SIZE)/2] = {[0:((`BIN_SIZE)/2)-1]};}
-	coverpoint2: coverpoint Den {bins binsDenPos[(`BIN_SIZE)/2-1] = {[1:((`BIN_SIZE)/2)-1]};
+    num_positiv: coverpoint Num {bins binsNumPos[(`BIN_SIZE)/2] = {[0:((`BIN_SIZE)/2)-1]};}
+	den_positiv: coverpoint Den {bins binsDenPos[(`BIN_SIZE)/2-1] = {[1:((`BIN_SIZE)/2)-1]};
                                 illegal_bins zero[1] ={0};}     //denominador = 0 es un estado ilegal
-	coverpoint3: coverpoint Den {bins binsDenNeg[(`BIN_SIZE)/2] ={[-((`BIN_SIZE)/2):-1]};}
-    coverpoint4: coverpoint Num {bins binsNumPos[(`BIN_SIZE)/2] ={[-((`BIN_SIZE)/2):-1]};}
+	den_negativ: coverpoint Den {bins binsDenNeg[(`BIN_SIZE)/2] ={[-((`BIN_SIZE)/2):-1]};}
+    num_positiv: coverpoint Num {bins binsNumPos[(`BIN_SIZE)/2] ={[-((`BIN_SIZE)/2):-1]};}
 
-    crosspoint1: cross coverpoint1,coverpoint2; //combinatoria de numerador positivo y denominador positivo
-    crosspoint2: cross coverpoint1,coverpoint3; //combinatoria de numerador positivo y denominador negativo
-    crosspoint3: cross coverpoint4,coverpoint2; //combinatoria de numerador negativo y denominador positivo
-    crosspoint4: cross coverpoint4,coverpoint3; //combinatoria de numerador negativo y denominador negativo
+    crosspoint1: cross num_positiv,den_positiv; //combinatoria de numerador positivo y denominador positivo
+    crosspoint2: cross num_positiv,den_negativ; //combinatoria de numerador positivo y denominador negativo
+    crosspoint3: cross num_positiv,den_positiv; //combinatoria de numerador negativo y denominador positivo
+    crosspoint4: cross num_positiv,den_negativ; //combinatoria de numerador negativo y denominador negativo
 endgroup
 covergroup ValoresSalida @(negedge Done);
     cocientes1: coverpoint Coc {bins binsCocPos[(`BIN_SIZE)/2] = {[0:((`BIN_SIZE)/2)-1]};}
