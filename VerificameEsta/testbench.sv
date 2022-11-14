@@ -64,6 +64,9 @@ constraint div_exactaaa {num%den == 0;}
 // constraint lim_grandeee {(abs(num)<32768) && (abs(den)<32768);}
 endclass
 
+// No definimos un nombre específico para el testbench, usamos el definido en
+// testbench_algoritmico.sv y testbench_segmentado.sv para generalizar el testbench
+// y no tener duplicados
 module `NOMBRE_TESTBENCH;
 
 logic CLK, RSTa, Start;
@@ -102,6 +105,8 @@ ValoresEntrada vals;
 ValoresSalida valo;
 
 // Declaración de módulos
+// Nota: el nombre del módulo instanciado se define en testbench_algoritmico.sv y
+// testbench_segmentado.sv.
 `MODULO #(
     .tamanyo(`BIT_SIZE)
 ) divisor (
