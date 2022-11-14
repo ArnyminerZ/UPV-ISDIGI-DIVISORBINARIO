@@ -1,8 +1,10 @@
 // `include "../Divisor_Algoritmico.sv"
 // `define MODULO Divisor_Algoritmico
+// `define NOMBRE_TESTBENCH testbench_segmentado
 
 `include "../Dividor_Segmentado.sv"
 `define MODULO Dividor_Segmentado
+`define NOMBRE_TESTBENCH testbench_algoritmico
 
 
 // Se puede definir debug para obtener registros más detallados
@@ -69,7 +71,7 @@ constraint div_exactaaa {num%den == 0;}
 // constraint lim_grandeee {(abs(num)<32768) && (abs(den)<32768);}
 endclass
 
-module testbench_algoritmico;
+module `NOMBRE_TESTBENCH;
 
 logic CLK, RSTa, Start;
 logic signed [`LAST_BIT:0] Num, Den;
