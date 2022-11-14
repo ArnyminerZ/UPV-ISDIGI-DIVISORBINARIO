@@ -117,6 +117,7 @@ always begin
     #50;
 end
 
+// Le ordena al módulo iniciar el cálculo
 task iniciar;
     Start <= 1'b0;
     @(posedge CLK); // Esperamos un ciclo
@@ -125,6 +126,7 @@ task iniciar;
     Start <= 1'b0;
 endtask
 
+// Le ordena al módulo que se reinicie
 task reiniciar;
     $display("> Reiniciando circuito...");
     RSTa = 1'b0;
@@ -135,17 +137,20 @@ task reiniciar;
     repeat (3) @(posedge CLK); // Esperamos tres ciclos
 endtask
 
+// Espera a que el módulo haya terminado, y el testbench haya completado la comprobación
 task esperaAComprobar;
     @(posedge Done); // Esperamos a que termine
     @(negedge Done);
     @(comprobado);
 endtask
 
+// Actualiza los targets de cociente y residuo
 task actualizarTargets;
     target_coc=$signed(Num)/$signed(Den);
     target_res=$signed(Num)%$signed(Den);
 endtask
 
+// La rutina de randomización. Genera valores, actualiza targets, calcula y comprueba
 task rutina;
     assert (bus_inst.randomize()) else $fatal("! Randomization failed");
     Num = bus_inst.num;
@@ -160,8 +165,8 @@ task rutina;
     esperaAComprobar();
 endtask
 
+// Reinicia el módulo nada más empezar
 initial reiniciar();
-//assert (!RSTa) else $error("No se ha reiniciado correctamente")//Comprobamos que se ha reiniciado correctamente
 
 // Bloque de código principal
 initial begin
