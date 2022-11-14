@@ -16,10 +16,12 @@ module Dividor_Segmentado #(
                                             // el numerador y el divisor   (32 bits también)      
 );
 
-logic [tamanyo-1:0] [tamanyo-1:0] Num_c2s;
-logic [tamanyo-1:0] [tamanyo-1:0] Q      ;
+localparam etapas=2**tamanyo;
 
-logic [tamanyo-1:0] Done_mem;
+logic [etapas-1:0] [tamanyo-1:0] Num_c2s;
+logic [etapas-1:0] [tamanyo-1:0] Q      ;
+
+logic [etapas-1:0] Done_mem;
 
 /* 
    Queremos realizar un Divisor Segmentado, es decir un divisor algoritmico pero que realize dicha 
@@ -36,7 +38,7 @@ logic [tamanyo-1:0] Done_mem;
 // Declaramos la variable del generate (i)
 genvar i ;
 generate
-   for(i = 0; i<(tamanyo+1) ; i = i+1)  // Empezamos con i=0 hasta que i llegue como máximo a 32, va incrementando el bit de 1 en 1 (i=i+1)
+   for(i = 0; i<(etapas+1) ; i = i+1)  // Empezamos con i=0 hasta que i llegue como máximo a 32, va incrementando el bit de 1 en 1 (i=i+1)
       begin
          //  Como se van a generar 32 módulos, usaremos un case/default para realizarlo, donde solo
          // se llegarán a declarar los módulos 0 y 32 de forma directa y en el default estarán los
@@ -54,8 +56,8 @@ generate
                   .RSTa(RSTa),   // Conectamos el RSTa de la instancia al del módulo
                   .Start(Start), // Conectamos el Start de la instancia al del módulo
                   .Q('0),
-                  .Den_abs(!Den[tamanyo-1] ? Den : (~Den+1)),
                   .Den_c2s(!Den[tamanyo-1] ? (~Den+1) : Den),
+                  .Den_abs(!Den[tamanyo-1] ? Den : (~Den+1)),
                   .Num_c2s(!Num[tamanyo-1] ? Num : (~Num+1)), // Es el sumador para el residuo
                   .Q_out(Q[0]),
                   .Num_c2s_out(Num_c2s[0]),
@@ -73,21 +75,23 @@ generate
                      end
                   else                 // Si no se activa el reset , sino que la operación va a quedar como concluida -->
                      begin 
-                        Coc <= (!Num[tamanyo-1] == Den[tamanyo-1]) ? Q[i-1] : (~Q[i-1]+1);
-                        Res <= (!Num[tamanyo-1]) ? (~Num_c2s[i-1]+1) : Num_c2s[i-1];
-                        Done <= Done_mem[i-1]; 
+                        Coc <= (!Num[tamanyo-1] == !Den[tamanyo-1]) ? Q[i-1] : (~Q[i-1]+1);
+                        Res <= (Num[tamanyo-1]) ? (~Num_c2s[i-1]+1) : Num_c2s[i-1];
+                        Done <= Done_mem[i-1];
                      end
                end
 
             default:
-               Aux_Segmentado #(.tamanyo(tamanyo)) Siguiendo_Division (     // Declaramos la segunda instancia del divisor auxiliar que permite
+               Aux_Segmentado #(
+                  .tamanyo(tamanyo)
+               ) Siguiendo_Division (     // Declaramos la segunda instancia del divisor auxiliar que permite
                                                                            // continuar la cadena de sumadores desde i=1 hasta i=31.
                   .CLK(CLK),     // Conectamos el CLK de la instancia al del módulo
                   .RSTa(RSTa),   // Conectamos el RSTa de la instancia al del módulo
                   .Start(Done_mem[i-1]),  // Conectamos el Start de la instancia al ---------
                   .Q(Q[i-1]),
-                  .Den_abs(!Den[tamanyo-1] ? Den : (~Den+1)),
                   .Den_c2s(!Den[tamanyo-1] ? (~Den+1) : Den),
+                  .Den_abs(!Den[tamanyo-1] ? Den : (~Den+1)),
                   .Num_c2s(Num_c2s[i-1]),
                   .Q_out(Q[i]),
                   .Num_c2s_out(Num_c2s[i]),
