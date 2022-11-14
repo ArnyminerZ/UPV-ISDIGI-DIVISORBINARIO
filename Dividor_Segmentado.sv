@@ -5,10 +5,10 @@ module Dividor_Segmentado #(
 ) (
    // Declaramos aquí entradas y salidas --> 
 
-	// Entradas --> 
+	// ! Entradas --> 
     input CLK , RSTa , Start ,  // Declaramos la entrada de reloj , el Reset high lvl y la entrada higg lvl de iniciación de la operación(Start)
     input logic [tamanyo-1:0] Num , Den , // Declaramos las entradas del numerador(Num) y del denominador (Den) de 32 bits de tamaño [31:0]
-    // Outputs -->
+    // ! Outputs -->
     output logic Done ,  // Declaramos la salida Done para ver cuando justo acaba de hacer la división
     output logic [tamanyo-1:0] Coc , Res    // Declaramos las salidas del cociente (Coc) 
                                             // y  del Resto (Res) del resultado de la división entre 
@@ -74,8 +74,8 @@ generate
                      end
                   else                 // Si no se activa el reset , sino que la operación va a quedar como concluida -->
                      begin 
-                        Coc <= (SignNum[i-1]^SignDen[i-1]) ? (~Q[i-1]+1) : Q[i-1];
-                        Res <= (SignNum[i-1]) ? (~ACCU[i-1]+1) : ACCU[i-1];
+                        Coc <= (SignNum[i-1]^SignDen[i-1]) ? (~Q[i-1]+1) : Q[i-1];  // 
+                        Res <= (SignNum[i-1]) ? (~ACCU[i-1]+1) : ACCU[i-1];         //
                         Done <= Done_mem[i-1];        // Actualizamos el valor del start con el valor que se haya guardado en el último módulo realizado en el default.
                      end
                end
@@ -94,8 +94,8 @@ generate
                   .ACCU_out(ACCU[i]),           // En cambio, para la salida se guardará el que justo vayamos a utilizar para el siguiente módulo
                   .Q_out(Q[i]),                 // La salida del registro Q se le asignará el valor justo que tenga en ese preciso módulo (Que fue asignado en el módulo justo anterior)
                   .M_out(M[i]),                 // Lo mismo ocurre con la salida del registro M
-                  .SignNum_out(SignNum[i]),     //
-                  .SignDen_out(SignDen[i]),     //   
+                  .SignNum_out(SignNum[i]),     // Las salidas de los signos tienen el valor actual
+                  .SignDen_out(SignDen[i]),     // Las salidas de los signos tienen el valor actual  
                   .Done(Done_mem[i])            // Guardamos el último valor de lo que haya guardado en Done_mem
 
                );
