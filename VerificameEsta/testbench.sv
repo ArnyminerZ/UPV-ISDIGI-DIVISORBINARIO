@@ -154,8 +154,8 @@ initial begin
     vals = new;
     Start = 1'b0;
 
-    Num = 'd64;
-    Den = -'d2;
+    Num = 'd128;
+    Den = 'd2;
     actualizarTargets();
 
     $display("> Arrancando primer ciclo...");
