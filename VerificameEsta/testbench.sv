@@ -1,10 +1,9 @@
-// `include "../Divisor_Algoritmico.sv"
-// `define MODULO Divisor_Algoritmico
-// `define NOMBRE_TESTBENCH testbench_segmentado
 
-`include "../Dividor_Segmentado.sv"
-`define MODULO Dividor_Segmentado
-`define NOMBRE_TESTBENCH testbench_algoritmico
+/**
+ * ARCHIVO MODELO DE TESTBENCH
+ * REQUIERE ALGUNOS DEFINE PARA FUNCIONAR.
+ * SE DEFINEN EN testbench_algoritmico y testbench_segmentado
+ */
 
 
 // Se puede definir debug para obtener registros más detallados
@@ -28,12 +27,6 @@
 
 // El tamaño de bits que probar
 `define BIT_SIZE 8  //probamos con ocho bits para que los coverpoints se encuentren dentro del margen que puede manejar esta construccion
-
-/**
- * ARCHIVO MODELO DE TESTBENCH
- * REQUIERE ALGUNOS DEFINE PARA FUNCIONAR.
- * SE DEFINEN EN testbench_algoritmico y testbench_segmentado
- */
 
 
 // * NO CAMBIAR
