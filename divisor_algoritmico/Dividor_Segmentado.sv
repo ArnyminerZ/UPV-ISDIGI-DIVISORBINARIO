@@ -13,9 +13,9 @@ module Dividor_Segmentado #(
     output logic [tamanyo-1:0] Coc , Res    // Declaramos las salidas del cociente (Coc) 
                                             // y  del Resto (Res) del resultado de la división entre 
                                             // el numerador y el divisor   (32 bits también)      
-);
+);d
 
-localparam etapas=2**tamanyo;
+localparam etapas=tamanyo; //2**tamanyo;
 
 logic [etapas-1:0][tamanyo-1:0] ACCU, Q, M;  // Declaramos el acumulador, el contador del cociente y el del resto
 logic [etapas-1:0] SignNum, SignDen, Done_mem;  // Declaramos los array del signo del numerador, denominador y el estado de paso realizado en memoria
